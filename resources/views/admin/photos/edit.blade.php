@@ -70,21 +70,8 @@
                                 Please provide a valid zip.
                             </div>
                         </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group">
-                            {{ Form::submit('Edit User', ['class' => 'btn btn-primary']) }}
-                        </div>
-
-                        {!! Form::close() !!}
-
-                        {!! Form::open(['action' => ['UserController@destroy', $user->id], 'method' => 'DELETE']) !!}
-                            <div class="form-group">
-                                {{ Form::submit('Delete User', ['class' => 'btn btn-danger']) }}
-                            </div>
-                        {!! Form::close(); !!}
-                    </div>
-
-
+                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+                    {!! Form::close() !!}
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->

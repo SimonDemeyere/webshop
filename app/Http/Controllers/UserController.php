@@ -16,6 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $users = User::paginate(10);
         return view('admin.users.index', compact('users'));
     }
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        return view('admin.users.create');
     }
 
     /**
@@ -38,7 +39,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        $user->save();
+        return redirect('admin/users');
     }
 
     /**
@@ -72,6 +79,7 @@ class UserController extends Controller
      */
     public function update(UsersEditRequest $request, $id)
     {
+
         $user = User::findOrFail($id);
         if(trim($request->password)==''){
             $input = $request->except('password');
@@ -83,7 +91,7 @@ class UserController extends Controller
         $user->last_name = trim($request->last_name);
         $user->email = trim($user->email);
         $user->save();
-        return redirect('admin.users');
+        return redirect('admin/users');
     }
 
     /**
@@ -94,6 +102,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin/users');
     }
 }

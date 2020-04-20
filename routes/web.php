@@ -22,6 +22,7 @@ Route::get('/admin', function () {
 });
 
 Route::resource('/admin/users', 'UserController');
+Route::resource('/admin/photos', 'PhotoController');
 
 Auth::routes();
 

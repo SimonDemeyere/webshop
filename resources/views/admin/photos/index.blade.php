@@ -11,10 +11,10 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Photos</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Users</h4>
+                <h4 class="page-title">Photos</h4>
             </div>
         </div>
     </div>
@@ -24,19 +24,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">User Table</h4>
+                    <h4 class="header-title">Photo Table</h4>
                     <p class="text-muted font-13 mb-2">
-                        This table shows all records of <b><code>Users</code></b>.
+                        This table shows all records of <b><code>Photos</code></b>.
                     </p>
-                    <a href="{{ route('users.create') }}" class="btn btn-success mb-2">Create User</a>
+                    <a href="{{ route('photos.create') }}" class="btn btn-success mb-2">Create Photo</a>
 
                     <table id="basic-datatable" class="table dt-responsive nowrap">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Profile picture</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
+                            <th>src</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Actions</th>
@@ -45,28 +43,20 @@
 
 
                         <tbody>
-                        @if($users)
-                            @foreach ($users as $user)
+                        @if($photos)
+                            @foreach ($photos as $photo)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>
-                                    @if($user->photo)
-                                        <img height="50" src="{{ asset('/assets/images/' . $user->photo ? '/assets/images/' . $user->photo->src : '/')  }} " alt="profile_picture">
-                                    @else
-                                        /
-                                    @endif
-                                </td>
-                                <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at ? $user->created_at : '/'}}</td>
-                                <td>{{ $user->updated_at ? $user->updated_at : '/'}}</td>
-                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a></td>
+                                <td>{{ $photo->id }}</td>
+                                <td><img height="50" src="/assets/images/{{ $photo->src }}" alt="uploaded_img"></td>
+                                <td>{{ $photo->created_at ? $photo->created_at : '/' }}</td>
+                                <td>{{ $photo->updated_at ? $photo->updated_at : '/' }}</td>
+                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('photos.edit', $photo->id) }}"><i class="fas fa-edit"></i></a></td>
                             </tr>
                             @endforeach
                         @endif
                         </tbody>
                     </table>
-                    {{ $users->links() }}
+                    {{ $photos->links() }}
 
                 </div> <!-- end card body-->
             </div> <!-- end card -->

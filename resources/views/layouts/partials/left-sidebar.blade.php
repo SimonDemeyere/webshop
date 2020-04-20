@@ -16,6 +16,12 @@
                         <span> Users </span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/photos">
+                        <i class="fe-camera"></i>
+                        <span> Photos </span>
+                    </a>
+                </li>
 
                 <li class="menu-title">UBOLD Navigation</li>
 
