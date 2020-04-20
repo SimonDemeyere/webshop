@@ -14,15 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/store', function () {
+    return view('store');
 });
 
 Route::get('/admin', function () {
     return view('admin.index');
-});
+})->middleware('auth');
 
-Route::resource('/admin/users', 'UserController');
-Route::resource('/admin/photos', 'PhotoController');
+Route::resource('/admin/users', 'UserController')->middleware('auth');
+Route::resource('/admin/photos', 'PhotoController')->middleware('auth');
 
 Auth::routes();
 

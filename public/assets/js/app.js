@@ -49779,6 +49779,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./custom_front */ "./resources/js/custom_front.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -49914,6 +49916,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/custom_front.js":
+/*!**************************************!*\
+  !*** ./resources/js/custom_front.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var icon = document.getElementById('search-icon');
+var input = document.getElementById('searchInput');
+var topBtn = document.getElementById("topBtn"); // Filters DOM
+
+var instrumentFilter = document.getElementById('instrument-filter');
+var instrumentfilterDiv = document.getElementById('instrument-filter-option');
+var brandFilter = document.getElementById('brand-filter');
+var priceFilter = document.getElementById('price-filter');
+var priceFilterDiv = document.getElementById('price-filter-option');
+var materialFilter = document.getElementById('material-filter');
+var othersFilter = document.getElementById('others-filter');
+
+icon.onclick = function () {
+  if (input.style.display == 'block') {
+    input.style.display = 'none';
+  } else {
+    input.style.display = 'block';
+    input.focus();
+  }
+};
+
+if ($('bg-home')) {
+  $(window).scroll(function () {
+    $('nav').toggleClass('scrolled', $(this).scrollTop() > $(window).height() - 70);
+  });
+}
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    topBtn.style.display = "block";
+  } else {
+    topBtn.style.display = "none";
+  }
+}
+
+topBtn.onclick = function () {
+  document.body.scrollTop = 0; // For Safari
+
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+};
 
 /***/ }),
 
