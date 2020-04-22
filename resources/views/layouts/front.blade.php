@@ -9,11 +9,11 @@
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+<div id='app'></div>
 <header id="header" class="d-lg-flex flex-lg-column justify-content-lg-center @yield("class__home")">
     @include("layouts.partials_front.header")
     @yield("header")
 </header>
-
 <div class="container-fluid container-home">
     @yield("content")
 </div>

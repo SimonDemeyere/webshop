@@ -11,15 +11,33 @@
                 <li class="menu-title">Navigation</li>
 
                 <li>
-                    <a href="/admin/users">
+                    <a href="{{ asset('admin/users') }}">
                         <i class="fe-users"></i>
                         <span> Users </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/photos">
+                    <a href="{{ asset('admin/roles') }}">
+                        <i class="fas fa-tags"></i>
+                        <span> Roles </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ asset('admin/photos') }}">
                         <i class="fe-camera"></i>
                         <span> Photos </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ asset('admin/products') }}">
+                        <i class="fas fa-th-large"></i>
+                        <span> Products </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ asset('admin/categories') }}">
+                        <i class="fas fa-th-large"></i>
+                        <span> Categories </span>
                     </a>
                 </li>
 

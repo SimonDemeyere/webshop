@@ -49781,6 +49781,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./custom_front */ "./resources/js/custom_front.js");
 
+__webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -49919,6 +49921,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/custom.js":
+/*!********************************!*\
+  !*** ./resources/js/custom.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+$(document).ready(function() {
+    console.log('in jquery');
+    $('body').on('click', '.pagination a', function(e) {
+        console.log('start function');
+        e.preventDefault();
+        let url = $(this).attr('href');
+
+        $.get(url, function(data) {
+            let mainDiv = $(".users", data);
+            $('.users').html(mainDiv);
+
+        });
+        console.log('end function');
+    });
+});
+*/
+// user table search
+
+/***/ }),
+
 /***/ "./resources/js/custom_front.js":
 /*!**************************************!*\
   !*** ./resources/js/custom_front.js ***!
@@ -49927,49 +49957,47 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports) {
 
 var icon = document.getElementById('search-icon');
-var input = document.getElementById('searchInput');
-var topBtn = document.getElementById("topBtn"); // Filters DOM
 
-var instrumentFilter = document.getElementById('instrument-filter');
-var instrumentfilterDiv = document.getElementById('instrument-filter-option');
-var brandFilter = document.getElementById('brand-filter');
-var priceFilter = document.getElementById('price-filter');
-var priceFilterDiv = document.getElementById('price-filter-option');
-var materialFilter = document.getElementById('material-filter');
-var othersFilter = document.getElementById('others-filter');
+if (icon) {
+  var input = document.getElementById('searchInput');
+  var topBtn = document.getElementById("topBtn"); // Filters DOM
 
-icon.onclick = function () {
-  if (input.style.display == 'block') {
-    input.style.display = 'none';
-  } else {
-    input.style.display = 'block';
-    input.focus();
+  var instrumentFilter = document.getElementById('instrument-filter');
+  var instrumentfilterDiv = document.getElementById('instrument-filter-option');
+  var brandFilter = document.getElementById('brand-filter');
+  var priceFilter = document.getElementById('price-filter');
+  var priceFilterDiv = document.getElementById('price-filter-option');
+  var materialFilter = document.getElementById('material-filter');
+  var othersFilter = document.getElementById('others-filter');
+
+  icon.onclick = function () {
+    if (input.style.display == 'block') {
+      input.style.display = 'none';
+    } else {
+      input.style.display = 'block';
+      input.focus();
+    }
+  };
+
+  if ($('bg-home')) {
+    $(window).scroll(function () {
+      $('nav').toggleClass('scrolled', $(this).scrollTop() > $(window).height() - 70);
+    });
+  } // window.onscroll = function() {scrollFunction()};
+
+  /*function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          topBtn.style.display = "block";
+      } else {
+          topBtn.style.display = "none";
+      }
   }
-};
+   topBtn.onclick = function () {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  };*/
 
-if ($('bg-home')) {
-  $(window).scroll(function () {
-    $('nav').toggleClass('scrolled', $(this).scrollTop() > $(window).height() - 70);
-  });
 }
-
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
-  }
-}
-
-topBtn.onclick = function () {
-  document.body.scrollTop = 0; // For Safari
-
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-};
 
 /***/ }),
 

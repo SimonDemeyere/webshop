@@ -70,6 +70,16 @@
                                 Please provide a valid zip.
                             </div>
                         </div>
+                    <div class="form-group mb-3">
+                        <select name="role" id="role" class="form-control">
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}" @if($user->role->id == $role->id) selected @endif>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <div class="form-group">
                             {{ Form::submit('Edit User', ['class' => 'btn btn-primary']) }}

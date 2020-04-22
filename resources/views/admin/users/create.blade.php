@@ -70,6 +70,17 @@
                             Please provide a valid zip.
                         </div>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="role">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            @foreach($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}
                 </div> <!-- end card-body-->

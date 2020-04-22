@@ -25,10 +25,12 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
+
 </head>
 
 <body>
-
+<div id='app'></div>
 <!-- Begin page -->
 <div id="wrapper">
 
@@ -53,7 +55,7 @@
     <!-- ============================================================== -->
     <!-- End Page content -->
     <!-- ============================================================== -->
-
+    @include("layouts.partials.footer")
 
 </div>
 <!-- END wrapper -->
@@ -77,7 +79,7 @@
 <script src="{{ asset('assets/js/pages/dashboard-1.init.js') }}"></script>
 
 <!-- App js-->
-<script src="{{ asset('assets/js/app.min.js') }}"></script>
+<script src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
 </html>

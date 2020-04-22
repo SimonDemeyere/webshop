@@ -29,7 +29,10 @@
                         This table shows all records of <b><code>Users</code></b>.
                     </p>
                     <a href="{{ route('users.create') }}" class="btn btn-success mb-2">Create User</a>
-
+                    <div class="form-group">
+                        <input type="text" name="search" id="search" class="form-control" placeholder="Search user" />
+                    </div>
+{{--                    <h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
                     <table id="basic-datatable" class="table dt-responsive nowrap">
                         <thead>
                         <tr>
@@ -37,6 +40,7 @@
                             <th>Profile picture</th>
                             <th>Full Name</th>
                             <th>Email</th>
+                            <th>Role</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Actions</th>
@@ -58,6 +62,7 @@
                                 </td>
                                 <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->role->name }}</td>
                                 <td>{{ $user->created_at ? $user->created_at : '/'}}</td>
                                 <td>{{ $user->updated_at ? $user->updated_at : '/'}}</td>
                                 <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a></td>
@@ -65,30 +70,40 @@
                             @endforeach
                         @endif
                         </tbody>
+{{--                        {{ $users->render() }}--}}
+                       {{-- <script>
+                            console.log('test');
+
+
+                                fetch_user_data();
+
+                                function fetch_user_data(query = '') {
+                                    $.ajax({
+                                        url: "/admin/users/action",
+                                        method: 'GET',
+                                        data: {query:query},
+                                        dataType: 'json',
+                                        success: function(data) {
+                                            $('tbody').html(data.table_data);
+                                            $('#total_records').text(data.total_data);
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            alert(xhr.status);
+                                        }
+                                    })
+                                }
+
+                                $(document).on('keyup', '#search', function() {
+                                    let query = $(this).val();
+                                    fetch_user_data(query);
+                                })
+
+
+                        </script>--}}
                     </table>
                     {{ $users->links() }}
-
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->
     </div>
-
-    <!-- Footer Start -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    2015 - 2019 &copy; UBold theme by <a href="">Coderthemes</a>
-                </div>
-                <div class="col-md-6">
-                    <div class="text-md-right footer-links d-none d-sm-block">
-                        <a href="javascript:void(0);">About Us</a>
-                        <a href="javascript:void(0);">Help</a>
-                        <a href="javascript:void(0);">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- end Footer -->
 @endsection

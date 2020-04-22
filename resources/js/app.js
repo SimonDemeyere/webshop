@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 require('./custom_front');
+require('./custom');
 
 window.Vue = require('vue');
 
