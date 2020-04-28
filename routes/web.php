@@ -28,6 +28,7 @@ Route::resource('/admin/users', 'UserController')->middleware('auth');
 Route::get('/admin/users/action', 'UserController@action')->name('users.action')->middleware('auth');
 Route::resource('/admin/photos', 'PhotoController')->middleware('auth');
 Route::resource('/admin/roles', 'RoleController')->middleware('auth');
+Route::resource('/admin/products', 'ProductController')->middleware('auth');
 Route::resource('/admin/categories', 'CategoryController')->middleware('auth');
 
 Auth::routes();

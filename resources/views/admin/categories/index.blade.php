@@ -43,23 +43,28 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-
-
                         <tbody>
                         @if($categories)
                             @foreach ($categories as $category)
-                            <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>{{ $category->category }}</td>
-                                <td>{{ $category->created_at ? $category->created_at : '/'}}</td>
-                                <td>{{ $category->updated_at ? $category->updated_at : '/'}}</td>
-                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('categories.edit', $category->id) }}"><i class="fas fa-edit"></i></a></td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $category->id }}</td>
+                                    <td>{{ $category->category }}</td>
+                                    <td>{{ $category->created_at ? $category->created_at : '/'}}</td>
+                                    <td>{{ $category->updated_at ? $category->updated_at : '/'}}</td>
+                                    <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('categories.edit', $category->id) }}"><i class="fas fa-edit"></i></a></td>
+                                </tr>
+                                @if($category->childrenCategories)
+                                    <tr>
+                                        @foreach ($category->childrenCategories as $childCategory)
+                                            @include("admin.categories.child_category", ['child_category' => $childCategory])
+                                        @endforeach
+                                    </tr>
+                                @endif
                             @endforeach
                         @endif
                         </tbody>
                     </table>
-                    {{ $categories->links() }}
+{{--                    {{ $categories->links() }}--}}
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->

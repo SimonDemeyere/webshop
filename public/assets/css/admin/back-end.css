@@ -1,0 +1,13 @@
+.unselectable_custom {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#parent_categories {
+  display: none;
+  font-size: 9pt;
+}
+

@@ -30,7 +30,7 @@
                     {!! Form::open(['action' => ['CategoryController@update', $category->id], 'method' => 'PATCH', 'class' => 'needs-validation']) !!}
                     <div class="form-group mb-3">
                         {{ Form::label('category', 'Category') }}
-                        {{ Form::text('category', $category->name, ['id' => 'category', 'class' => 'form-control']) }}
+                        {{ Form::text('category', $category->category, ['id' => 'category', 'class' => 'form-control']) }}
                         <div class="valid-feedback">
                             Looks good!
                         </div>

@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("title"))
-    Users
+    Products
 @endsection
 @section("content")
     <!-- start page title -->
@@ -38,6 +38,7 @@
                         <tr>
                             <th>#</th>
                             <th>Product</th>
+                            <th>Category</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Actions</th>
@@ -46,14 +47,14 @@
 
 
                         <tbody>
-                        @if($roles)
-                            @foreach ($roles as $role)
+                        @if($products)
+                            @foreach ($products as $product)
                             <tr>
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->name }}</td>
-                                <td>{{ $role->created_at ? $role->created_at : '/'}}</td>
-                                <td>{{ $role->updated_at ? $role->updated_at : '/'}}</td>
-                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('roles.edit', $role->id) }}"><i class="fas fa-edit"></i></a></td>
+                                <td>{{ $product->id }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->created_at ? $product->created_at : '/'}}</td>
+                                <td>{{ $product->updated_at ? $product->updated_at : '/'}}</td>
+                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('roles.edit', $product->id) }}"><i class="fas fa-edit"></i></a></td>
                             </tr>
                             @endforeach
                         @endif

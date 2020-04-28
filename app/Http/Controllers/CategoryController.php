@@ -15,8 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
-        return view('admin.categories.index', compact('categories'));
+        $categories = Category::whereNull('category_id')
+            ->with('childrenCategories')
+            ->get();
+        $arr = [];
+        return view('admin.categories.index', compact('categories', 'arr'));
     }
 
     /**
@@ -26,7 +29,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::whereNull('category_id')
+            ->with('childrenCategories')
+            ->get();
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -87,7 +93,13 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->childrenCategories()->get()->each->delete();
         $category->delete();
         return redirect('/admin/categories');
+    }
+
+    public function deleting(Category $category)
+    {
+
     }
 }

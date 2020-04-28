@@ -1,20 +1,13 @@
-/*
-$(document).ready(function() {
-    console.log('in jquery');
-    $('body').on('click', '.pagination a', function(e) {
-        console.log('start function');
-        e.preventDefault();
-        let url = $(this).attr('href');
+// switch subcategory
+let subCategory_switch = document.getElementById('subcategory_switch');
+let divParentCategories = document.getElementById('parent_categories');
 
-        $.get(url, function(data) {
-            let mainDiv = $(".users", data);
-            $('.users').html(mainDiv);
+subCategory_switch.onclick = function() {
+    if(subCategory_switch.checked === true) {
+        divParentCategories.style.display = 'block';
+    } else {
+        divParentCategories.style.display = 'none';
+    }
+};
 
-        });
-        console.log('end function');
-    });
-});
-*/
-
-// user table search
 

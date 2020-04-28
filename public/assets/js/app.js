@@ -49928,24 +49928,17 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/*
-$(document).ready(function() {
-    console.log('in jquery');
-    $('body').on('click', '.pagination a', function(e) {
-        console.log('start function');
-        e.preventDefault();
-        let url = $(this).attr('href');
+// switch subcategory
+var subCategory_switch = document.getElementById('subcategory_switch');
+var divParentCategories = document.getElementById('parent_categories');
 
-        $.get(url, function(data) {
-            let mainDiv = $(".users", data);
-            $('.users').html(mainDiv);
-
-        });
-        console.log('end function');
-    });
-});
-*/
-// user table search
+subCategory_switch.onclick = function () {
+  if (subCategory_switch.checked === true) {
+    divParentCategories.style.display = 'block';
+  } else {
+    divParentCategories.style.display = 'none';
+  }
+};
 
 /***/ }),
 
@@ -50012,15 +50005,27 @@ if (icon) {
 
 /***/ }),
 
+/***/ "./resources/sass/back-end.scss":
+/*!**************************************!*\
+  !*** ./resources/sass/back-end.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/back-end.scss ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! E:\School\Syntra West\webshop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\School\Syntra West\webshop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\School\Syntra West\webshop\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! E:\School\Syntra West\webshop\resources\sass\back-end.scss */"./resources/sass/back-end.scss");
 
 
 /***/ })
