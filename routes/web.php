@@ -29,7 +29,8 @@ Route::get('/admin/users/action', 'UserController@action')->name('users.action')
 Route::resource('/admin/photos', 'PhotoController')->middleware('auth');
 Route::resource('/admin/roles', 'RoleController')->middleware('auth');
 Route::resource('/admin/products', 'ProductController')->middleware('auth');
-Route::resource('/admin/categories', 'CategoryController')->middleware('auth');
+Route::resource('/admin/categories', 'CategoryController');
+Route::get('/admin/categories/getChildCategories/{id}', 'CategoryController@getChildCategories');
 
 Auth::routes();
 

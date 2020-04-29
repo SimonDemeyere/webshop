@@ -8,6 +8,14 @@
 
 #parent_categories {
   display: none;
-  font-size: 9pt;
+}
+
+.subtext {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.subtext span {
+  color: #f672a7;
 }
 

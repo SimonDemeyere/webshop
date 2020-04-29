@@ -44,12 +44,26 @@
                             <label class="unselectable_custom"><input id="subcategory_switch" type="checkbox" name="subcategory_switch" value="subcategory_switch"> Create as subcategory</label>
                         </div>
                         <div id="parent_categories" class="form-group mb-3">
-                            <label for="parent_category">Select parent category</label>
-                            <select name="parent_category" id="parent_category" class="form-control">
+                            <label for="parent_category">Parent category list</label>
+                            <select name="parent_category" id="parent_category" class="form-control mb-4">
+                                <option disabled selected value> Select a parent category </option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach
                             </select>
+                            <label for="child_category">Child category list</label>
+                            <p class="subtext">Select <span>only</span> when creating a <span>subcategory of a subcategory</span></p>
+                            <select name="child_category" id="child_category" class="form-control">
+                                <option selected value>Select subcategory (No selected)</option>
+                        </select>
+                            <script type="text/javascript">
+
+                            </script>
+                            {{--@foreach($categories as $category)
+                                @foreach($category->childrenCategories as $childCategory)
+                                    <option value="{{ $childCategory->id }}">{{ $childCategory->category }}</option>
+                                @endforeach
+                            @endforeach--}}
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Create Category</button>

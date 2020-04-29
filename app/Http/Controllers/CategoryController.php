@@ -35,6 +35,14 @@ class CategoryController extends Controller
         return view('admin.categories.create', compact('categories'));
     }
 
+    public function getChildCategories($categoryId = 0)
+    {
+        $childData = (new \App\Category)->getChildById($categoryId);
+
+        echo json_encode($childData);
+        exit;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,6 +53,9 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->category = trim($request->category);
+        if($request->parent_category) {
+            $category->category_id = trim($request->parent_category);
+        }
         $category->save();
         return redirect('/admin/categories');
     }

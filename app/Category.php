@@ -18,4 +18,8 @@ class Category extends Model
     {
         return $this->hasMany(Category::class)->with('categories');
     }
+    public function getChildById($categoryId = 0)
+    {
+        return $this->hasMany(Category::class)->where('category_id', $categoryId)->get();
+    }
 }
