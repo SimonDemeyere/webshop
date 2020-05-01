@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
@@ -20,6 +21,7 @@ class Category extends Model
     }
     public function getChildById($categoryId = 0)
     {
-        return $this->hasMany(Category::class)->where('category_id', $categoryId)->get();
+//        return $this->hasMany(Category::class)->where('category_id', $categoryId)->get();
+        return DB::select('SELECT * FROM categories WHERE category_id = :catId', ['catId' => $categoryId]);
     }
 }

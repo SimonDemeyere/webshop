@@ -49928,56 +49928,289 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// switch subcategory
-var subCategory_switch = document.getElementById('subcategory_switch');
+// Wachten tot DOM geladen is
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('Running'); //Get DOM elements
 
-if (subCategory_switch !== null) {
-  var divParentCategories = document.getElementById('parent_categories');
-  subCategory_switch.addEventListener('click', function () {
-    divParentCategories.style.display = subCategory_switch.checked ? 'block' : 'none';
-  });
-}
+  var subCategory_switch = document.getElementById('subcategory_switch');
+  var parentCategoriesDOM = document.getElementById('parent_category');
+  var childCategoriesDOM = document.getElementById('child_category');
+  var allChildSelectDOM;
+  var divParentCategories = document.getElementById('categories');
+  var select;
 
-$(document).ready(function () {
-  $('#parent_category').change(function () {
-    // parent id
-    var id = $(this).val();
-    console.log(id); // empty second select
+  if (subCategory_switch) {
+    subCategory_switch.addEventListener('click', function () {
+      divParentCategories.style.display = subCategory_switch.checked ? 'block' : 'none';
+    });
+  }
 
-    $('#child_category').find('option').not(':first').remove(); // AJAX request
+  if (parentCategoriesDOM) {
+    parentCategoriesDOM.addEventListener('change', function (e) {
+      var src = e.target,
+          id = src.options[src.selectedIndex].value,
+          xhr = new XMLHttpRequest(),
+          url = "getChildCategories/".concat(id);
+      deleteAllNextSelects("select-0"); // Get data from PHP file
 
-    $.ajax({
-      url: 'getChildCategories/' + id,
-      type: 'get',
-      dataType: 'json',
-      success: function success(response) {
-        console.log(response['data']); // alert('test: ' + response);
+      if (id) {
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        var len = 0;
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Get response text en parse to JSON
+            var data = JSON.parse(xhr.responseText);
+            console.log('parent: data');
+            console.log(data); // Delete all elements from <select>
+            // Nodig wanneer je van categorie wijzigt zo dat de oude values (van de eerst gekozen categorie) er niet meer bij staan
 
-        if (response['data'] != null) {
-          len = response['data'].length;
-        }
+            var L = childCategoriesDOM.options.length - 1;
 
-        if (len > 0) {
-          // read data and create option
-          for (var i = 0; i < len; i++) {
-            var _id = response['data'][i].id;
-            var name = response['data'][i].name;
-            var option = "<option value'" + _id + "'>" + name + "</option>";
-            $('#child_category').append(option);
+            for (var i = L; i >= 1; i--) {
+              childCategoriesDOM.remove(i);
+            } // Loop over json array
+
+
+            for (var _i = 0; _i < data.length; _i++) {
+              var childCategory = data[_i];
+              console.log('parent: childCategory');
+              console.log(childCategory);
+              var _id = childCategory.id;
+              var name = childCategory.category; // Create option element
+
+              var option = document.createElement('option');
+              option.value = _id;
+              option.text = name; // Add element to <select>
+
+              childCategoriesDOM.appendChild(option);
+            }
           }
-        }
-      },
-      error: function error(errorThrown) {
-        if (!$.trim(data)) {
-          alert("What follows is blank: " + data);
-        } else {
-          alert("What follows is not blank: " + data);
-        }
+        };
+
+        xhr.send();
       }
     });
-  });
+    childCategoriesDOM.addEventListener('change', function (e) {
+      var src = e.target,
+          id = src.options[src.selectedIndex].value,
+          xhr = new XMLHttpRequest(),
+          url = "getChildCategories/".concat(id);
+      deleteAllNextSelects('select-0');
+
+      if (id) {
+        // Get data from PHP file
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Get response text en parse die naar JSON
+            var data = JSON.parse(xhr.responseText);
+            console.log('child: data');
+            console.log(data);
+
+            if (data) {
+              var dynamicChilds = document.getElementById('dynamic_childs');
+              var selectcount = document.getElementsByClassName('subchild_categories').length;
+              var dynamicSelect = document.createElement('select');
+              dynamicSelect.name = "subchild_categories[]";
+              dynamicSelect.classList.add('subchild_categories');
+              dynamicSelect.classList.add('form-control');
+              dynamicSelect.classList.add('mb-4');
+              dynamicSelect.dataset.selectcount = "select-".concat(selectcount + 1); // Delete alle elements from <select>
+              // Nodig wanneer je van categorie wijzigt zo dat de oude values (van de eerst gekozen categorie) er niet meer bij staan
+
+              var L = dynamicSelect.options.length - 1;
+
+              for (var i = L; i >= 1; i--) {
+                dynamicSelect.remove(i);
+              } // Create empty value
+
+
+              var emptyOption = document.createElement('option');
+              emptyOption.text = 'Select subcategory (No selected)';
+              emptyOption.value = '';
+              emptyOption.selected = true;
+              dynamicSelect.appendChild(emptyOption); // <option selected value>Select subcategory (No selected)</option>
+              // Loop over json array
+
+              for (var _i2 = 0; _i2 < data.length; _i2++) {
+                var childCategory = data[_i2];
+                console.log('child: childCategory');
+                console.log(childCategory);
+                var _id2 = childCategory.id;
+                var name = childCategory.category; // Create option element
+
+                var option = document.createElement('option');
+                option.value = _id2;
+                option.text = name; // Add element to <select>
+
+                dynamicSelect.appendChild(option);
+              }
+
+              dynamicChilds.appendChild(dynamicSelect);
+              allChildSelectDOM = document.getElementsByClassName('subchild_categories');
+              findSelects();
+            }
+          }
+        };
+
+        xhr.send();
+      } else {}
+    });
+  }
+
+  function findSelects() {
+    select = document.getElementsByClassName('subchild_categories');
+
+    var _loop = function _loop(i) {
+      var currentSelect = select[i];
+      currentSelect.addEventListener('change', function (e) {
+        console.log('test: added AddEventListener');
+        fetchFromPHP(currentSelect);
+      });
+    };
+
+    for (var i = 0; i < select.length; i++) {
+      _loop(i);
+    }
+
+    console.log('findSelects: ');
+    console.log(select);
+  }
+
+  function fetchFromPHP(node) {
+    var id = node.options[node.selectedIndex].value,
+        selectId = node.dataset.selectcount;
+    xhr = new XMLHttpRequest(), url = "getChildCategories/".concat(id);
+    deleteAllNextSelects(selectId);
+
+    if (id) {
+      var dynamicChilds = document.getElementById('dynamic_childs'); // active on live
+      // const loadingHTML = `<img id="loading_img" src="/assets/images/loading.svg">`;
+      // dynamicChilds.insertAdjacentHTML('beforeend', loadingHTML);
+      // Get data from PHP file
+
+      xhr.open('GET', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Get response text en parse die naar JSON
+          var data = JSON.parse(xhr.responseText);
+
+          if (data) {
+            var selectcount = document.getElementsByClassName('subchild_categories').length;
+            var dynamicSelect = document.createElement('select');
+            dynamicSelect.name = "subchild_categories[]";
+            dynamicSelect.classList.add('subchild_categories');
+            dynamicSelect.classList.add('form-control');
+            dynamicSelect.classList.add('mb-4');
+            dynamicSelect.dataset.selectcount = "select-".concat(selectcount + 1); // Delete alle elements from <select>
+            // Nodig wanneer je van categorie wijzigt zo dat de oude values (van de eerst gekozen categorie) er niet meer bij staan
+
+            var L = dynamicSelect.options.length - 1;
+
+            for (var i = L; i >= 1; i--) {
+              dynamicSelect.remove(i);
+            } // Create empty value
+
+
+            var emptyOption = document.createElement('option');
+            emptyOption.text = 'Select subcategory (No selected)';
+            emptyOption.value = '';
+            emptyOption.selected = true;
+            dynamicSelect.appendChild(emptyOption); // <option selected value>Select subcategory (No selected)</option>
+            // Loop over json array
+
+            for (var _i3 = 0; _i3 < data.length; _i3++) {
+              var childCategory = data[_i3];
+              var _id3 = childCategory.id;
+              var name = childCategory.category; // Create option element
+
+              var option = document.createElement('option');
+              option.value = _id3;
+              option.text = name; // Add element to <select>
+
+              dynamicSelect.appendChild(option);
+            }
+
+            dynamicChilds.appendChild(dynamicSelect);
+            allChildSelectDOM = document.getElementsByClassName('subchild_categories');
+            findSelects(); // active on live
+            // dynamicChilds.removeChild(document.getElementById("loading_img"));
+          }
+        }
+      };
+    }
+
+    xhr.send();
+  }
+
+  function deleteAllNextSelects(selectNumber) {
+    var number = selectNumber.split('-')[1];
+    console.log(number);
+
+    if (number == 0) {
+      document.getElementById('dynamic_childs').innerHTML = '';
+    } else if (number > 0) {
+      var allSelects = document.getElementsByClassName('subchild_categories');
+
+      for (var i = 0; i < allSelects.length; i++) {
+        var _select = allSelects[i];
+
+        var _selectNumber = _select.dataset.selectcount.split('-')[1];
+
+        if (_selectNumber > number) {
+          console.log('deleted select');
+          console.log(_select);
+
+          _select.closest('#dynamic_childs').removeChild(_select);
+        }
+      }
+    } else {}
+  }
+  /*Get Parent Categories
+  $('#parent_category').change(function () {
+      // parent id
+      let id = $(this).val();
+      console.log(id);
+       // empty second select
+      $('#child_category').find('option').not(':first').remove();
+       // AJAX request
+      $.ajax({
+          url: 'getChildCategories/'+id,
+          type: 'get',
+          dataType: 'json',
+          success: function(response) {
+              console.log(response['data']);
+              // alert('test: ' + response);
+              let len = 0;
+              if(response['data'] != null) {
+                  len = response['data'].length;
+              }
+               if(len > 0) {
+                  // read data and create option
+                  for(let i = 0; i < len; i++) {
+                      let id = response['data'][i].id;
+                      let name = response['data'][i].name;
+                       let option = "<option value'"+id+"'>"+name+"</option>";
+                       $('#child_category').append(option);
+                  }
+              }
+          },
+          error: function(errorThrown){
+              if (!$.trim(data)){
+                  alert("What follows is blank: " + data);
+              }
+              else{
+                  alert("What follows is not blank: " + data);
+              }
+          }
+      });
+  });*/
+
 });
 
 /***/ }),

@@ -5,11 +5,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/admin/back-end.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/admin/back-end.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/custom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/back-end.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/back-end.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/child_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/child_category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -51,13 +51,6 @@
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="db_webshop: schema" type="76f4a085:MysqlImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="db_webshop: schema" type="76f4a085:MysqlImplModel$Schema" />
-        <item name="categories: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -182,19 +175,19 @@
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\School\Syntra West\webshop\public\assets\images" />
+      <recent name="E:\School\Syntra West\webshop\resources\views\admin\roles" />
+      <recent name="E:\School\Syntra West\webshop\public\assets\js" />
+      <recent name="E:\School\Syntra West\webshop\public\assets\css" />
+      <recent name="E:\School\Syntra West\webshop\resources\views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\categories\subcategories" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\categories" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\products" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\roles" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\users\ajax" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\School\Syntra West\webshop\resources\views\admin\roles" />
-      <recent name="E:\School\Syntra West\webshop\public\assets\js" />
-      <recent name="E:\School\Syntra West\webshop\public\assets\css" />
-      <recent name="E:\School\Syntra West\webshop\public\assets\images" />
-      <recent name="E:\School\Syntra West\webshop\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -240,7 +233,10 @@
       <workItem from="1587888228335" duration="1838000" />
       <workItem from="1587974019143" duration="8945000" />
       <workItem from="1588061325355" duration="11256000" />
-      <workItem from="1588150012999" duration="16737000" />
+      <workItem from="1588150012999" duration="18025000" />
+      <workItem from="1588234932480" duration="7503000" />
+      <workItem from="1588256426987" duration="16714000" />
+      <workItem from="1588326854078" duration="983000" />
     </task>
     <servers />
   </component>

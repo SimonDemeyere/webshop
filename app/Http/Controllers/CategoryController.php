@@ -56,6 +56,16 @@ class CategoryController extends Controller
         if($request->parent_category) {
             $category->category_id = trim($request->parent_category);
         }
+        if($request->child_category) {
+            $category->category_id = trim($request->child_category);
+        }
+        if($request->subchild_categories) {
+            foreach($request->subchild_categories as $subchild_category) {
+                if ($subchild_category) {
+                    $category->category_id = trim($subchild_category);
+                }
+            }
+        }
         $category->save();
         return redirect('/admin/categories');
     }
