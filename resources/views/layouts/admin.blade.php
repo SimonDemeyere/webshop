@@ -26,6 +26,7 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/admin/back-end.css') }}" rel="stylesheet" type="text/css" />
 
+{{--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">--}}
 
 {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--}}
 
@@ -64,6 +65,9 @@
 
 @include("layouts.partials.right-sidebar")
 
+<!-- App js-->
+<script src="{{ asset('assets/js/app.js') }}"></script>
+
 <!-- Vendor js -->
 <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
@@ -77,11 +81,21 @@
 <script src="{{ asset('assets/libs/flot-charts/jquery.flot.selection.js') }}"></script>
 <script src="{{ asset('assets/libs/flot-charts/jquery.flot.crosshair.js') }}"></script>
 
+<script src="{{ asset('assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables/dataTables.select.min.js') }}"></script>
+
+
 <!-- Dashboard 1 init js-->
 <script src="{{ asset('assets/js/pages/dashboard-1.init.js') }}"></script>
-
-<!-- App js-->
-<script src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
 </html>

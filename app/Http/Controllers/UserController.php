@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -19,16 +20,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $users = User::withTrashed()->get();
 
-        $users = User::paginate(10);
-        error_log('index function');
-
-        /*if($request->ajax()) {
-            return [
-                'users' => view('users.ajax.index')->with(compact('users'))->render(),
-                'next_page' => $users->nextPageUrl()
-            ];
-        }*/
         return view('admin.users.index', compact('users'));
     }
 

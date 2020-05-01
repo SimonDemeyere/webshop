@@ -46,7 +46,7 @@
                         <div id="categories" class="form-group mb-3">
                             <label for="parent_category">Parent category list</label>
                             <select name="parent_category" data-countselect="select-0" id="parent_category" class="form-control mb-4">
-                                <option disabled selected value> Select a parent category </option>
+                                <option selected value> Select a parent category </option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                                 @endforeach

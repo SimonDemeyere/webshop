@@ -29,10 +29,9 @@
                         This table shows all records of <b><code>Users</code></b>.
                     </p>
                     <a href="{{ route('users.create') }}" class="btn btn-success mb-2">Create User</a>
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <input type="text" name="search" id="search" class="form-control" placeholder="Search user" />
-                    </div>
-{{--                    <h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
+                    </div>--}}
                     <table id="basic-datatable" class="table dt-responsive nowrap">
                         <thead>
                         <tr>
@@ -43,6 +42,7 @@
                             <th>Role</th>
                             <th>Created at</th>
                             <th>Updated at</th>
+                            <th>Deleted at</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -65,43 +65,14 @@
                                 <td>{{ $user->role->name }}</td>
                                 <td>{{ $user->created_at ? $user->created_at : '/'}}</td>
                                 <td>{{ $user->updated_at ? $user->updated_at : '/'}}</td>
+                                <td>{{ $user->trashed() ? $user->deleted_at : 'Active' }}</td>
                                 <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a></td>
                             </tr>
                             @endforeach
                         @endif
                         </tbody>
-{{--                        {{ $users->render() }}--}}
-                       {{-- <script>
-                            console.log('test');
-
-
-                                fetch_user_data();
-
-                                function fetch_user_data(query = '') {
-                                    $.ajax({
-                                        url: "/admin/users/action",
-                                        method: 'GET',
-                                        data: {query:query},
-                                        dataType: 'json',
-                                        success: function(data) {
-                                            $('tbody').html(data.table_data);
-                                            $('#total_records').text(data.total_data);
-                                        },
-                                        error: function (xhr, ajaxOptions, thrownError) {
-                                            alert(xhr.status);
-                                        }
-                                    })
-                                }
-
-                                $(document).on('keyup', '#search', function() {
-                                    let query = $(this).val();
-                                    fetch_user_data(query);
-                                })
-
-
-                        </script>--}}
                     </table>
-                    {{ $users->links() }}
+{{--                    {{ $users->links() }}--}}
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->

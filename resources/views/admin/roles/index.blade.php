@@ -29,9 +29,6 @@
                         This table shows all records of <b><code>Roles</code></b>.
                     </p>
                     <a href="{{ route('roles.create') }}" class="btn btn-success mb-2">Create Role</a>
-                    <div class="form-group">
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Search role" />
-                    </div>
 {{--                    <h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
                     <table id="basic-datatable" class="table dt-responsive nowrap">
                         <thead>
