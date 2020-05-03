@@ -7,8 +7,15 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Node Modules
+@import '~flatpickr/dist/flatpickr.min.css';
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.min.css';
+@import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css';
+@import '~datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css';
+@import '~datatables.net-select-bs4/css/select.bootstrap4.min.css';
+
 // Front-End
-@import 'front';
+//@import 'front';
 
 // Back-End
 //@import 'back-end';

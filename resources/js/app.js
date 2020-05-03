@@ -4,7 +4,35 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+// Laravel Bootstrap
 require('./bootstrap');
+
+// Node Modules
+require('waypoints/lib/jquery.waypoints.min');
+
+require('flatpickr/dist/flatpickr.min');
+require('jquery-knob/js/jquery.knob');
+require('jquery-sparkline/jquery.sparkline.min');
+require('flot-charts');
+
+require('datatables.net/js/jquery.dataTables.min');
+require('datatables.net-bs4/js/dataTables.bootstrap4.min');
+require('datatables.net-responsive/js/dataTables.responsive.min');
+require('datatables.net-responsive-bs4/js/responsive.bootstrap4.min');
+require('datatables.net-buttons/js/dataTables.buttons.min');
+require('datatables.net-buttons-bs4/js/buttons.bootstrap4.min');
+require('datatables.net-buttons/js/buttons.html5.min');
+require('datatables.net-buttons/js/buttons.flash.min');
+require('datatables.net-buttons/js/buttons.print.min');
+require('datatables.net-keytable/js/dataTables.keyTable.min');
+require('datatables.net-select/js/dataTables.select.min');
+
+require('metismenu');
+require('jquery-slimscroll');
+require('jquery.counterup');
+// require('jquery-waypoints/waypoints.min');
+
+// Custom JS
 require('./custom_front');
 require('./custom');
 

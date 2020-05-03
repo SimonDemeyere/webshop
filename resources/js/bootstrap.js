@@ -20,6 +20,9 @@ try {
  */
 
 window.axios = require('axios');
+window.flatpickr = require('flatpickr');
+window.metisMenu = require('metismenu');
+// window.jQuery = require('jquery');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

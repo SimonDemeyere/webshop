@@ -250,56 +250,8 @@ document.addEventListener('DOMContentLoaded', e => {
                     select.closest('#dynamic_childs').removeChild(select);
                 }
             }
-        } else {
-
         }
     }
-
-    /*Get Parent Categories
-    $('#parent_category').change(function () {
-        // parent id
-        let id = $(this).val();
-        console.log(id);
-
-        // empty second select
-        $('#child_category').find('option').not(':first').remove();
-
-        // AJAX request
-        $.ajax({
-            url: 'getChildCategories/'+id,
-            type: 'get',
-            dataType: 'json',
-            success: function(response) {
-                console.log(response['data']);
-                // alert('test: ' + response);
-                let len = 0;
-                if(response['data'] != null) {
-                    len = response['data'].length;
-                }
-
-                if(len > 0) {
-                    // read data and create option
-                    for(let i = 0; i < len; i++) {
-                        let id = response['data'][i].id;
-                        let name = response['data'][i].name;
-
-                        let option = "<option value'"+id+"'>"+name+"</option>";
-
-                        $('#child_category').append(option);
-                    }
-                }
-            },
-            error: function(errorThrown){
-                if (!$.trim(data)){
-                    alert("What follows is blank: " + data);
-                }
-                else{
-                    alert("What follows is not blank: " + data);
-                }
-            }
-        });
-    });*/
-
 });
 
 $(document).ready(function() {
