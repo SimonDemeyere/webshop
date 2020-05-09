@@ -55,7 +55,7 @@
                                 <td>{{ $user->id }}</td>
                                 <td>
                                     @if($user->photo)
-                                        <img height="50" src="{{ asset('/assets/images/' . $user->photo ? '/assets/images/' . $user->photo->src : '/')  }} " alt="profile_picture">
+                                        <img height="50" src="{{ asset($user->photo ? '/assets/' . $user->photo->src : '/')  }} " alt="profile_picture">
                                     @else
                                         /
                                     @endif
@@ -65,8 +65,15 @@
                                 <td>{{ $user->role->name }}</td>
                                 <td>{{ $user->created_at ? $user->created_at : '/'}}</td>
                                 <td>{{ $user->updated_at ? $user->updated_at : '/'}}</td>
-                                <td>{{ $user->trashed() ? $user->deleted_at : 'Active' }}</td>
-                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a></td>
+                                <td>{{ $user->trashed() ? 'Deleted' : 'Active' }}</td>
+                                <td>
+                                    @if($user->trashed())
+                                        <a class="btn btn-outline-danger rounded-pill w-50 mb-1" href="{{ route('users.restore', $user->id) }}"><i class="fas fa-trash-restore"></i></a>
+                                    @else
+                                        <a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a>
+                                    @endif
+
+                                </td>
                             </tr>
                             @endforeach
                         @endif

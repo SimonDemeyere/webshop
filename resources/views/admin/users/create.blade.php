@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="validationCustom05">Zip</label>
+                        <label for="country">Zip</label>
                         <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" >
                         <div class="invalid-feedback">
                             Please provide a valid zip.
@@ -83,6 +83,11 @@
                     </div>
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}
+                    @if($countries->count())
+                        @foreach($countries as $country)
+                            {!! $country->flag['flag-icon'] !!} {{ $country->name->common }}
+                        @endforeach
+                    @endif
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->

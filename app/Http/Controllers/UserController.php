@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
+use App\Country;
 use App\Http\Requests\UsersEditRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use App\User;
+use App\Photo;
+use App\Traits\UploadTrait;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+use PragmaRX\Countries\Package\Countries;
 
 class UserController extends Controller
 {
+
+    use UploadTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +43,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        $countries = Countries::all();
+        return view('admin.users.create', compact('roles', 'countries'));
     }
 
     /**
@@ -74,7 +85,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $address = Address::findOrFail($user->address_id);
+        $countries = Country::all();
+        return view('admin.users.edit', compact('user', 'roles', 'address', 'countries'));
     }
 
     /**
@@ -84,21 +97,60 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UsersEditRequest $request, $id)
+    public function update(UsersEditRequest $request, User $user)
     {
-
-        $user = User::findOrFail($id);
-        if(trim($request->password)==''){
+        /*if(trim($request->password) == ''){
             $input = $request->except('password');
         }else{
             $input = $request->all();
             $input['password'] = Hash::make($request['password']);
-        }
+        }*/
         $user->first_name = trim($request->first_name);
         $user->last_name = trim($request->last_name);
         $user->email = trim($request->email);
+        if($user->address) {
+            $user->address->street = trim($request->street);
+            $user->address->house_number = trim($request->house_number);
+            $user->address->postcode = trim($request->postcode);
+            $user->address->city = trim($request->city);
+            $user->address->country_id = trim($request->country);
+        }
+        if($request->has('src')) {
+            if($user->photo) {
+
+                $prev_image = public_path( 'assets/' . $user->photo->src );
+                if(File::exists($prev_image)) {
+                    unlink($prev_image);
+                }
+                $image = $request->file('src');
+                $image_name = Str::slug($image->getClientOriginalName() . '_' . time());
+                $folder = 'images/users/';
+                $tmp_path = $folder . $image_name . '.' . $image->getClientOriginalExtension();
+
+                $this->uploadOne($image, $folder, 'public', $image_name);
+
+                $user->photo->src = $tmp_path;
+                $user->photo->save();
+            } else {
+                $photo = new Photo();
+
+                $image = $request->file('src');
+                $image_name = Str::slug($image->getClientOriginalName() . '_' . time());
+                $folder = 'images/users/';
+                $tmp_path = $folder . $image_name . '.' . $image->getClientOriginalExtension();
+
+                $this->uploadOne($image, $folder, 'public', $image_name);
+
+                $photo->src = $tmp_path;
+                $photo->save();
+                $user->photo_id = trim((int)$photo->id);
+            }
+
+        }
         $user->role_id = trim((int)$request->role);
         $user->save();
+        $user->address->save();
+        $user->address->country->save();
         return redirect('/admin/users');
     }
 
@@ -111,60 +163,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        if($user->photo && File::exists('assets/' . $user->photo->src)) {
+            $image = public_path( 'assets/' . $user->photo->src );
+            if(File::exists($image)) {
+                unlink($image);
+            }
+            $user->photo->delete();
+        }
         $user->delete();
         return redirect('/admin/users');
     }
 
-    /*public function action(Request $request)
+    public function restore($id)
     {
-        error_log('action function');
-        if($request->ajax())
-        {
-            error_log('in function 2');
-            $query = $request->get('query');
-            if($query != '') {
-                $data = DB::table('users')
-                    ->select('first_name', 'last_name', 'email', 'role')
-                    ->where('first_name', 'LIKE', '%' . $query . '%')
-                    ->orWhere('last_name', 'LIKE', '%' . $query . '%')
-                    ->orWhere('email', 'LIKE', '%' . $query . '%')
-                    ->orWhere('role', 'LIKE', '%' . $query . '%')
-                    ->get();
-            } else {
-                $data = DB::table('users')
-                    ->select('first_name', 'last_name', 'email', 'role')
-                    ->orderBy('created_at', 'desc')
-                    ->get();
-            }
-            $total_row = $data->count();
-            if($total_row > 0) {
-                foreach($data as $row)
-                {
-                    $output = '
-                        <tr>
-                            <td>' .$row->id. '</td>
-                            <td>' .$row->first_name. '</td>
-                            <td>' .$row->last_name. '</td>
-                            <td>' .$row->email. '</td>
-                            <td>' .$row->role. '</td>
-                            <td>' .$row->created_at. '</td>
-                            <td>' .$row->updated_at. '</td>
-                        </tr>
-                    ';
-                }
-            } else {
-                $output = '
-                    <tr>
-                        <td align="center" colspan="5">No Data Found</td>
-                    </tr>
-                ';
-            }
-            $data = array(
-                'table_data' => $output,
-                'total_data' => $total_row
-            );
-
-            return Response::json($data);
-        }
-    }*/
+        $user = User::withTrashed()->find($id)->restore();
+        return redirect('/admin/users');
+    }
 }

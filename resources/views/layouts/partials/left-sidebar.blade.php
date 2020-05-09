@@ -17,6 +17,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ asset('admin/addresses') }}">
+                        <i class="fas fa-address-card"></i>
+                        <span> Addresses </span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ asset('admin/roles') }}">
                         <i class="fas fa-tags"></i>
                         <span> Roles </span>

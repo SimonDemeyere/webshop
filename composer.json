@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
+        "pragmarx/countries": "^0.7.0",
         "yajra/laravel-datatables-oracle": "^9.10"
     },
     "require-dev": {

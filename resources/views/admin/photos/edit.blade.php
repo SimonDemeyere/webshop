@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("title")
-    Edit User
+    Edit Photo
 @endsection
 @section("content")
     <!-- start page title -->
@@ -24,54 +24,34 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Edit User</h4>
-                    <p class="sub-header">Change <b><code>user</code></b> records.</p>
+                    <h4 class="header-title">Edit Photo</h4>
+                    <p class="sub-header">Change <b><code>photo</code></b> records.</p>
 
-                    {!! Form::open(['action' => ['UserController@update', $user->id], 'method' => 'PATCH', 'class' => 'needs-validation']) !!}
+                    <form id="saveRow" action="{{ route('photos.update', $photo) }}" method="post" enctype="multipart/form-data">
+                        {{ method_field('PATCH') }}
+                        @csrf
                         <div class="form-group mb-3">
-                            {{ Form::label('first_name', 'Firstname') }}
-                            {{ Form::text('first_name', $user->first_name, ['id' => 'validationCustom01', 'class' => 'form-control']) }}
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
+                            <img height="300" src="{{ asset('/assets/' . $photo->src) }}" alt="photo">
                         </div>
                         <div class="form-group mb-3">
-                            {{ Form::label('last_name', 'Lastname') }}
-                            {{ Form::text('last_name', $user->last_name, ['id' => 'validationCustom02', 'class' => 'form-control']) }}
-                            <div class="valid-feedback">
-                                Looks good!
+                            <label for="src">Upload new photo</label>
+                            <input id="src" name="src" type="file" class="form-control-file">
+                        </div>
+                    </form>
+                    <form id="deleteRow" action="{{ route('photos.destroy', $photo) }}" method="post">
+                        {{ method_field('DELETE') }}
+                        @csrf
+                    </form>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-start">
+                            <div class="form-group mr-3">
+                                <input form="saveRow" type="submit" value="Edit Image" class="btn btn-primary">
+                            </div>
+                            <div class="form-group">
+                                <input form="deleteRow" type="submit" value="Delete Image" class="btn btn-danger">
                             </div>
                         </div>
-                        <div class="form-group mb-3">
-                            {{ Form::label('email', 'Email') }}
-                            {{ Form::email('email', $user->email, ['id' => 'validationCustomUsername', 'class' => 'form-control']) }}
-                            <div class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="validationCustom03">City</label>
-                            <input type="text" class="form-control" id="validationCustom03" placeholder="City" >
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="validationCustom04">State</label>
-                            <input type="text" class="form-control" id="validationCustom04" placeholder="State" >
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="validationCustom05">Zip</label>
-                            <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" >
-                            <div class="invalid-feedback">
-                                Please provide a valid zip.
-                            </div>
-                        </div>
-                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-                    {!! Form::close() !!}
+                    </div>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->

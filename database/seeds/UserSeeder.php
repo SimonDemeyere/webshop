@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Simon',
             'last_name' => 'Demeyere',
             'email' => 'Simon.demeyere@hotmail.com',
-            'photo_id' => 1,
+            'address_id' => 1,
             'role_id' => 1,
             'password' => bcrypt('password'),
         ]);
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Louise',
             'last_name' => 'Schellaert',
             'email' => 'Louise.Schellaert@hotmail.com',
-            'photo_id' => 2,
+            'address_id' => 2,
             'role_id' => 2,
             'password' => bcrypt('password'),
         ]);

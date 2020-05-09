@@ -15,7 +15,7 @@
             </div>
 
             <h5><a href="javascript: void(0);">{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</a> </h5>
-            <p class="text-muted mb-0"><small>Admin Head</small></p>
+            <p class="text-muted mb-0"><small>{{ Auth::user()->role->name }}</small></p>
         </div>
 
         <!-- Settings -->

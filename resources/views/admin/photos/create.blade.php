@@ -26,17 +26,14 @@
                 <div class="card-body">
                     <h4 class="header-title">Create Photo</h4>
                     <p class="sub-header">Create <b><code>photo</code></b> records.</p>
-
-                    {!! Form::open(['action' => ['PhotoController@store'], 'method' => 'POST', 'class' => 'needs-validation', 'files' => true]) !!}
-                    <div class="form-group mb-3">
-                        {{ Form::label('src', 'File') }}
-                        {{ Form::file('src', null, ['id' => 'validationCustom01', 'class' => 'form-control']) }}
-                        <div class="valid-feedback">
-                            Looks good!
+                    <form action="{{ route('photos.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-3">
+                            <label for="src">File</label>
+                            <input id="src" name="src" type="file" class="form-control-file">
                         </div>
-                    </div>
-                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-                    {!! Form::close() !!}
+                        <input type="submit" class="btn btn-primary">
+                    </form>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->

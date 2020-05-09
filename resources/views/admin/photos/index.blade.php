@@ -47,7 +47,7 @@
                             @foreach ($photos as $photo)
                             <tr>
                                 <td>{{ $photo->id }}</td>
-                                <td><img height="50" src="/assets/images/{{ $photo->src }}" alt="uploaded_img"></td>
+                                <td><img height="50" src="/assets/{{ $photo->src }}" alt="uploaded_img"></td>
                                 <td>{{ $photo->created_at ? $photo->created_at : '/' }}</td>
                                 <td>{{ $photo->updated_at ? $photo->updated_at : '/' }}</td>
                                 <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('photos.edit', $photo->id) }}"><i class="fas fa-edit"></i></a></td>

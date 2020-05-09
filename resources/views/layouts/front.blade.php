@@ -7,6 +7,7 @@
     <title>Musician Store</title>
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/front-end.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id='app'></div>

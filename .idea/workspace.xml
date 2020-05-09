@@ -2,23 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c190a47-ea6f-4cc5-b941-798dafd8e035" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/44ad4c55-1ab9-4c37-8e81-bedbf3d168e8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/44ad4c55-1ab9-4c37-8e81-bedbf3d168e8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webshop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webshop.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/admin/back-end.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/admin/back-end.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/app.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_front.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/front-end.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587304660bard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587308710bard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587367166bard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587367204druid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587378467troll.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587378488tousand_teeth.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/images/1587391001bard.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/photos/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/photos/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/photos/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/photos/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/photos/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/photos/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/left-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/left-sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/right-sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/right-sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/topbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/topbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/public/.gitignore" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -163,6 +185,15 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/nette/caching" />
+      <path value="$PROJECT_DIR$/vendor/colinodell/json5" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-str" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/countries" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/coollection" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-collection" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-arr" />
     </include_path>
   </component>
   <component name="ProjectId" id="1acMbtsUSv6oI4AcvcP7udWXiR7" />
@@ -172,7 +203,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/addresses" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -180,7 +211,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -191,11 +222,11 @@
       <recent name="E:\School\Syntra West\webshop\resources\views" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\School\Syntra West\webshop\resources\views\admin\addresses" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\categories\subcategories" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\categories" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\products" />
       <recent name="E:\School\Syntra West\webshop\resources\views\admin\roles" />
-      <recent name="E:\School\Syntra West\webshop\resources\views\admin\users\ajax" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -245,7 +276,15 @@
       <workItem from="1588234932480" duration="7503000" />
       <workItem from="1588256426987" duration="16714000" />
       <workItem from="1588326854078" duration="14400000" />
-      <workItem from="1588510082203" duration="10075000" />
+      <workItem from="1588510082203" duration="11088000" />
+      <workItem from="1588581196307" duration="7385000" />
+      <workItem from="1588600286283" duration="432000" />
+      <workItem from="1588600764787" duration="4464000" />
+      <workItem from="1588666167549" duration="16491000" />
+      <workItem from="1588748821216" duration="1204000" />
+      <workItem from="1588840172516" duration="17274000" />
+      <workItem from="1588930021434" duration="3334000" />
+      <workItem from="1589011726099" duration="12631000" />
     </task>
     <servers />
   </component>

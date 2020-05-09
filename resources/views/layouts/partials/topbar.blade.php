@@ -110,7 +110,7 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 @if(Auth::user()->photo)
-                <img src="{{ asset('assets/images/' . Auth::user()->photo->src) }}" alt="user-image" class="rounded-circle">
+                <img src="{{ asset('/assets/' . Auth::user()->photo->src) }}" alt="user-image" class="rounded-circle">
                 @endif
                 <span class="pro-user-name ml-1">
                     {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }} <i class="mdi mdi-chevron-down"></i>
@@ -168,7 +168,7 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center">
+        <a href="/admin" class="logo text-center">
             <span class="logo-lg">
                 <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="18">
                 <!-- <span class="logo-lg-text-light">UBold</span> -->
