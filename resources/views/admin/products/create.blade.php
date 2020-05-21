@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("title")
-    Edit User
+    Edit Product
 @endsection
 @section("content")
     <!-- start page title -->
@@ -24,17 +24,48 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Create Role</h4>
-                    <p class="sub-header">Create <b><code>role</code></b> records.</p>
+                    <h4 class="header-title">Create Product</h4>
+                    <p class="sub-header">Create <b><code>product</code></b> records.</p>
 
-                    <form action="{{ route('roles.store') }}" method="POST" class="needs-validation">
+                    <form action="{{ route('products.store') }}" method="POST" class="needs-validation">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control">
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" type="text" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="short_description">Short description <span class="subtext">(not required)</span></label>
+                            <input id="short_description" name="short_description" type="text" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="price">Price</label>
+                            <input id="price" name="price" type="number" step=".01" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="category">Select category</label>
+                            <select name="category" id="category" class="form-control">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product_image">Product Image</label>
+                            <input type="file" id="product_image" class="form-control-file">
+                        </div>
+                       {{-- <div class="form-group mb-3">
+                            <label for="child_category">Select subcategory</label>
+                            <p class="subtext">Select <span>only</span> when creating a <span>subcategory</span></p>
+                            <select name="child_category" id="child_category" data-selectcount="select-0" class="form-control mb-3">
+                                <option selected value>Select subcategory (No selected)</option>
+                            </select>
+                        </div>--}}
                         <div class="form-group">
-                            <button class="btn btn-primary">Create role</button>
+                            <button class="btn btn-primary">Create product</button>
                         </div>
                     </form>
                 </div> <!-- end card-body-->

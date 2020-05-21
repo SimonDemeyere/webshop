@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("title"))
+@section("title")
     Products
 @endsection
 @section("content")
@@ -26,19 +26,15 @@
                 <div class="card-body">
                     <h4 class="header-title">Product Table</h4>
                     <p class="text-muted font-13 mb-2">
-                        This table shows all records of <b><code>Products</code></b>.
+                        This table shows all records of <b><code>products</code></b>.
                     </p>
                     <a href="{{ route('products.create') }}" class="btn btn-success mb-2">Create Product</a>
-                    <div class="form-group">
-                        <input type="text" name="search" id="search" class="form-control" placeholder="Search Product" />
-                    </div>
 {{--                    <h3 align="center">Total Data : <span id="total_records"></span></h3>--}}
                     <table id="basic-datatable" class="table dt-responsive nowrap">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Product</th>
-                            <th>Category</th>
+                            <th>Name</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Actions</th>
@@ -54,13 +50,13 @@
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->created_at ? $product->created_at : '/'}}</td>
                                 <td>{{ $product->updated_at ? $product->updated_at : '/'}}</td>
-                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('roles.edit', $product->id) }}"><i class="fas fa-edit"></i></a></td>
+                                <td><a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('products.edit', $product->id) }}"><i class="fas fa-edit"></i></a></td>
                             </tr>
                             @endforeach
                         @endif
                         </tbody>
                     </table>
-                    {{ $roles->links() }}
+                    {{ $products->links() }}
                 </div> <!-- end card body-->
             </div> <!-- end card -->
         </div><!-- end col-->

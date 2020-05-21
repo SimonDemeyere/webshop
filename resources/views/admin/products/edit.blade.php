@@ -6,7 +6,7 @@
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
-        <div class="page-title-box">
+            <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
@@ -27,29 +27,28 @@
                     <h4 class="header-title">Edit Role</h4>
                     <p class="sub-header">Change <b><code>role</code></b> records.</p>
 
-                    {!! Form::open(['action' => ['RoleController@update', $role->id], 'method' => 'PATCH', 'class' => 'needs-validation']) !!}
+                    <Form id="saveRow" action="{{ route('roles.update', $role) }}" method="post" class="needs-validation">
+                        {{ method_field('PATCH') }}
+                        @csrf
                         <div class="form-group mb-3">
-                            {{ Form::label('role', 'Role') }}
-                            {{ Form::text('role', $role->name, ['id' => 'validationCustom01', 'class' => 'form-control']) }}
-                            <div class="valid-feedback">
-                                Looks good!
+                            <label for="role">Role</label>
+                            <input id="role" name="role" type="text" value="{{ $role->name }}" class="form-control">
+                        </div>
+                    </Form>
+                    <form id="deleteRow" action="{{ route('roles.destroy', $role) }}" method="post">
+                        {{ method_field('DELETE') }}
+                        @csrf
+                    </form>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-start">
+                            <div class="form-group mr-3">
+                                <input form="saveRow" type="submit" value="Edit Role" class="btn btn-primary">
                             </div>
-                        </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="form-group">
-                            {{ Form::submit('Edit Role', ['class' => 'btn btn-primary']) }}
-                        </div>
-
-                        {!! Form::close() !!}
-
-                        {!! Form::open(['action' => ['RoleController@destroy', $role->id], 'method' => 'DELETE']) !!}
                             <div class="form-group">
-                                {{ Form::submit('Delete Role', ['class' => 'btn btn-danger']) }}
+                                <input form="deleteRow" type="submit" value="Delete Role" class="btn btn-danger">
                             </div>
-                        {!! Form::close(); !!}
+                        </div>
                     </div>
-
-
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->

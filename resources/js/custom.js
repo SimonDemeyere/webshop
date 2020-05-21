@@ -1,7 +1,10 @@
 // Wachten tot DOM geladen is
 document.addEventListener('DOMContentLoaded', e => {
     console.log('Running');
-    //Get DOM elements
+
+    /** Categories **/
+
+    // Get DOM elements of create category
     const subCategory_switch    = document.getElementById('subcategory_switch');
     const parentCategoriesDOM   = document.getElementById('parent_category');
     const childCategoriesDOM    = document.getElementById('child_category');
@@ -252,8 +255,25 @@ document.addEventListener('DOMContentLoaded', e => {
             }
         }
     }
+
+    /** Products **/
+
+    // Get DOM elements of create product
+    /*const categoryDOM    = document.getElementById('category');
+    const subCategoryDOM = document.getElementById('subcategory');
+
+    if(categoryDOM) {
+        categoryDOM.addEventListener('change', e => {
+            const src = e.target,
+                id = src.options[src.selectedIndex].value,
+                xhr = new XMLHttpRequest(),
+        })
+    }*/
 });
 
+//
+
+// Activating DataTable
 $(document).ready(function() {
     // Default Datatable
     $('#basic-datatable').DataTable({

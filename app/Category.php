@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Product;
 
 class Category extends Model
 {
@@ -23,5 +24,10 @@ class Category extends Model
     {
 //        return $this->hasMany(Category::class)->where('category_id', $categoryId)->get();
         return DB::select('SELECT * FROM categories WHERE category_id = :catId', ['catId' => $categoryId]);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

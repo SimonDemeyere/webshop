@@ -76999,7 +76999,9 @@ __webpack_require__.r(__webpack_exports__);
 
 // Wachten tot DOM geladen is
 document.addEventListener('DOMContentLoaded', function (e) {
-  console.log('Running'); //Get DOM elements
+  console.log('Running');
+  /** Categories **/
+  // Get DOM elements of create category
 
   var subCategory_switch = document.getElementById('subcategory_switch');
   var parentCategoriesDOM = document.getElementById('parent_category');
@@ -77240,7 +77242,22 @@ document.addEventListener('DOMContentLoaded', function (e) {
       }
     }
   }
-});
+  /** Products **/
+  // Get DOM elements of create product
+
+  /*const categoryDOM    = document.getElementById('category');
+  const subCategoryDOM = document.getElementById('subcategory');
+   if(categoryDOM) {
+      categoryDOM.addEventListener('change', e => {
+          const src = e.target,
+              id = src.options[src.selectedIndex].value,
+              xhr = new XMLHttpRequest(),
+      })
+  }*/
+
+}); //
+// Activating DataTable
+
 $(document).ready(function () {
   // Default Datatable
   $('#basic-datatable').DataTable({
