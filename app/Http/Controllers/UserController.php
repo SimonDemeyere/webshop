@@ -99,12 +99,6 @@ class UserController extends Controller
      */
     public function update(UsersEditRequest $request, User $user)
     {
-        /*if(trim($request->password) == ''){
-            $input = $request->except('password');
-        }else{
-            $input = $request->all();
-            $input['password'] = Hash::make($request['password']);
-        }*/
         $user->first_name = trim($request->first_name);
         $user->last_name = trim($request->last_name);
         $user->email = trim($request->email);

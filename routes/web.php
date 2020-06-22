@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,22 +17,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/store', function () {
-    return view('store');
+
+Route::get('/shop', 'ShopController@index')->name('shop');
+Route::get('/shop/product/{id}', 'ProductController@show')->name('shop.product');
+Route::post('/comment', 'commentController@store')->name('comment');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.index');
+    });
+
+    Route::resource('/admin/users', 'UserController');
+    Route::get('/admin/users/restore/{id}', 'UserController@restore')->name('users.restore');
+    Route::resource('/admin/addresses', 'AddressController');
+    Route::resource('/admin/roles', 'RoleController');
+    Route::resource('/admin/photos', 'PhotoController');
+    Route::resource('/admin/products', 'ProductController');
+    Route::resource('/admin/categories', 'CategoryController');
+    Route::get('/admin/categories/getChildCategories/{id}', 'CategoryController@getChildCategories');
+    Route::get('/admin/categories/getChildByParentId/{id}', 'CategoryController@getChildByParentId');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware('auth');
-
-Route::resource('/admin/users', 'UserController')->middleware('auth');
-Route::get('/admin/users/restore/{id}', 'UserController@restore')->name('users.restore')->middleware('auth');
-Route::resource('/admin/addresses', 'AddressController')->middleware('auth');
-Route::resource('/admin/roles', 'RoleController')->middleware('auth');
-Route::resource('/admin/photos', 'PhotoController')->middleware('auth');
-Route::resource('/admin/products', 'ProductController')->middleware('auth');
-Route::resource('/admin/categories', 'CategoryController')->middleware('auth');
-Route::get('/admin/categories/getChildCategories/{id}', 'CategoryController@getChildCategories')->middleware('auth');
 
 Auth::routes();
 

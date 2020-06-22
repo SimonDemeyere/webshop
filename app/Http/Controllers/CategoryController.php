@@ -43,6 +43,14 @@ class CategoryController extends Controller
         exit;
     }
 
+    public function getChildByParentId($categoryId = 0)
+    {
+        $childData = (new \App\Category)->getChildByParentId($categoryId);
+
+        echo json_encode($childData);
+        exit;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -53,16 +61,17 @@ class CategoryController extends Controller
     {
         $category = new Category();
         $category->category = trim($request->category);
+        // if first level child is created
         if($request->parent_category) {
             $category->category_id = trim($request->parent_category);
+            $category->parent_id = $request->parent_category;
         }
-        if($request->child_category) {
-            $category->category_id = trim($request->child_category);
-        }
+        // if more then 1 child are created
         if($request->subchild_categories) {
             foreach($request->subchild_categories as $subchild_category) {
                 if ($subchild_category) {
                     $category->category_id = trim($subchild_category);
+                    $category->parent_id = $request->parent_category;
                 }
             }
         }

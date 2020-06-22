@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', e => {
     /** Products **/
 
     // Get DOM elements of create product
-    /*const categoryDOM    = document.getElementById('category');
+    const categoryDOM    = document.getElementById('category');
     const subCategoryDOM = document.getElementById('subcategory');
 
     if(categoryDOM) {
@@ -267,11 +267,49 @@ document.addEventListener('DOMContentLoaded', e => {
             const src = e.target,
                 id = src.options[src.selectedIndex].value,
                 xhr = new XMLHttpRequest(),
-        })
-    }*/
+                url = `../categories/getChildByParentId/${id}`;
+
+            console.log(id);
+
+            if (id) {
+                console.log('id active');
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                console.log(xhr);
+                xhr.onreadystatechange = () => {
+                    console.log(xhr);
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        console.log('product: data');
+                        console.log(data);
+                        if (data.length > 0) {
+                            createProductDropDown(data);
+                        }
+                    }
+                }
+                xhr.send();
+            }
+        });
+    }
 });
 
-//
+function createProductDropDown(subCategories) {
+    const subCategoriesDiv = document.getElementById('subCategories');
+    subCategoriesDiv.classList.remove('d-none');
+    const dropdown = document.createElement('select');
+    dropdown.classList.add('form-control');
+
+    for(let i = 0; i < subCategories.length; i++) {
+        const subCategory = subCategories[i];
+        const option = document.createElement('option');
+        option.value = subCategory.id;
+        option.text  = subCategory.category;
+
+        dropdown.appendChild(option);
+    }
+
+    subCategoriesDiv.appendChild(dropdown);
+}
 
 // Activating DataTable
 $(document).ready(function() {

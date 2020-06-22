@@ -77245,18 +77245,61 @@ document.addEventListener('DOMContentLoaded', function (e) {
   /** Products **/
   // Get DOM elements of create product
 
-  /*const categoryDOM    = document.getElementById('category');
-  const subCategoryDOM = document.getElementById('subcategory');
-   if(categoryDOM) {
-      categoryDOM.addEventListener('change', e => {
-          const src = e.target,
-              id = src.options[src.selectedIndex].value,
-              xhr = new XMLHttpRequest(),
-      })
-  }*/
 
-}); //
-// Activating DataTable
+  var categoryDOM = document.getElementById('category');
+  var subCategoryDOM = document.getElementById('subcategory');
+
+  if (categoryDOM) {
+    categoryDOM.addEventListener('change', function (e) {
+      var src = e.target,
+          id = src.options[src.selectedIndex].value,
+          xhr = new XMLHttpRequest(),
+          url = "../categories/getChildByParentId/".concat(id);
+      console.log(id);
+
+      if (id) {
+        console.log('id active');
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        console.log(xhr);
+
+        xhr.onreadystatechange = function () {
+          console.log(xhr);
+
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            console.log('product: data');
+            console.log(data);
+
+            if (data.length > 0) {
+              createProductDropDown(data);
+            }
+          }
+        };
+
+        xhr.send();
+      }
+    });
+  }
+});
+
+function createProductDropDown(subCategories) {
+  var subCategoriesDiv = document.getElementById('subCategories');
+  subCategoriesDiv.classList.remove('d-none');
+  var dropdown = document.createElement('select');
+  dropdown.classList.add('form-control');
+
+  for (var i = 0; i < subCategories.length; i++) {
+    var subCategory = subCategories[i];
+    var option = document.createElement('option');
+    option.value = subCategory.id;
+    option.text = subCategory.category;
+    dropdown.appendChild(option);
+  }
+
+  subCategoriesDiv.appendChild(dropdown);
+} // Activating DataTable
+
 
 $(document).ready(function () {
   // Default Datatable

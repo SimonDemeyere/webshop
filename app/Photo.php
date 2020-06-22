@@ -9,7 +9,7 @@ class Photo extends Model
     protected $uploads = '/assets/images/';
 
     protected $fillable = [
-        'src'
+        'src', 'product_id'
     ];
 
     public function getFileAttribute($photo) {

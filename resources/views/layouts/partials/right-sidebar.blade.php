@@ -10,7 +10,7 @@
         <!-- User box -->
         <div class="user-box">
             <div class="user-img">
-                <img src="{{ asset('assets/' . Auth::user()->photo->src) }}" alt="user-img" title="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" class="rounded-circle img-fluid">
+                <img src="{{ Auth::user()->photo ? asset('assets/' . Auth::user()->photo->src) : 'No picture' }}" alt="user-img" title="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" class="rounded-circle img-fluid">
                 <a href="{{ route('users.edit', Auth::user())  }}" class="user-edit"><i class="mdi mdi-pencil"></i></a>
             </div>
 

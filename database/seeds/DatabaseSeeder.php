@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
              CategorySeeder::class,
              AddressSeeder::class,
              CountrySeeder::class,
+             ProductSeeder::class,
+             CommentSeeder::class,
          ]);
     }
 }

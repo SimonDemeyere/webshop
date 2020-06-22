@@ -158,6 +158,7 @@ body {
     display: block;
     overflow: hidden;
     transform: translate(0, 70px);
+    width: 100%;
   }
 }
 #block-sold > div .sold-items .item .item-header {
@@ -326,6 +327,7 @@ body {
     display: block;
     overflow: hidden;
     transform: translate(0, 70px);
+    width: 100%;
   }
 }
 #block-newest > div .newest-items .item .item-header {
@@ -524,6 +526,10 @@ body {
   z-index: -99;
 }
 
+.desktop {
+  display: none;
+}
+
 #block-shop {
   margin: 0 auto;
 }
@@ -637,6 +643,7 @@ body {
     display: block;
     overflow: hidden;
     transform: translate(0, 70px);
+    width: 100%;
   }
 }
 #block-shop #block-shop-items .item .item-header {
@@ -940,6 +947,7 @@ body {
     display: block;
     overflow: hidden;
     transform: translate(0, 70px);
+    width: 100%;
   }
 }
 #block-related-products > div .related-items .item .item-header {
@@ -1101,9 +1109,6 @@ body {
   border-bottom: none;
   padding-bottom: 0;
 }
-#block-reviews #reviews-container .tab-content #nav-read .review > header {
-  display: flex;
-}
 #block-reviews #reviews-container .tab-content #nav-read .review > header .img-holder {
   border-radius: 50%;
   overflow: hidden;
@@ -1115,8 +1120,6 @@ body {
   height: 100%;
   -o-object-position: center;
      object-position: center;
-  left: 50%;
-  transform: translate(-12%);
 }
 #block-reviews #reviews-container .tab-content #nav-read .review > header h2 {
   font-size: 24px;
@@ -1627,6 +1630,14 @@ table tfoot tr #table-price {
     flex-direction: row;
   }
 
+  .desktop {
+    display: block;
+  }
+
+  #block-shop #block-shop-items .mobile-only {
+    display: none;
+  }
+
   #block-detail > div {
     display: flex;
     flex-direction: column;
@@ -1754,5 +1765,13 @@ table tfoot tr #table-price {
   }
   #block-checkout #myTabContent #contact #block-billing .submit {
     width: 50%;
+  }
+}
+@media (min-width: 1200px) {
+  .custom-paginate {
+    background-color: transparent !important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 }

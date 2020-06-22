@@ -53,9 +53,10 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div id="subCategories" class="d-none"></div>
                         <div class="form-group mb-3">
-                            <label for="product_image">Product Image</label>
-                            <input type="file" id="product_image" class="form-control-file">
+                            <label for="file">Product Image</label>
+                            <input name="file[]" type="file" id="file" class="form-control-file">
                         </div>
                        {{-- <div class="form-group mb-3">
                             <label for="child_category">Select subcategory</label>

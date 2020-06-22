@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('address_id')->nullable();
             $table->foreignId('photo_id')->nullable();
             $table->foreignId('role_id')->default(3);
+            $table->foreignId('comment_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -9,7 +9,7 @@ use App\Product;
 class Category extends Model
 {
     protected $fillable = [
-        'category', 'category_id'
+        'category', 'category_id', 'parent_id'
     ];
 
     public function categories()
@@ -23,11 +23,11 @@ class Category extends Model
     public function getChildById($categoryId = 0)
     {
 //        return $this->hasMany(Category::class)->where('category_id', $categoryId)->get();
-        return DB::select('SELECT * FROM categories WHERE category_id = :catId', ['catId' => $categoryId]);
+        return DB::select("SELECT * FROM categories WHERE category_id = :catId", ['catId' => $categoryId]);
     }
 
-    public function product()
+    public function getChildByParentId($categoryId = 0)
     {
-        return $this->belongsTo(Product::class);
+        return DB::select('SELECT * FROM categories WHERE parent_id = :catId ORDER BY category', ['catId' => $categoryId]);
     }
 }

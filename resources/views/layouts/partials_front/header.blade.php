@@ -9,7 +9,7 @@
                 <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/store">Store</a>
+                <a class="nav-link" href="{{ route('shop') }}">Shop</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/checkout">Checkout</a>
@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav navbar-right d-none d-lg-block">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span
-                                class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-cart"></i></span></a>
+                                class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-cart"></i></a>
                         <ul class="dropdown-menu dropdown-cart" role="menu">
                             <li>
                                 <div class="cart-img">
