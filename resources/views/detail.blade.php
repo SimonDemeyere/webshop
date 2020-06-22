@@ -48,8 +48,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="content-buy" class="">
-                            <form action="checkout.html" method="POST">
+                        <div id="content-buy">
+                            <form action="" method="POST">
                                 <p id="price">€{{ $product->price }}</p>
                                 <div id="input-quantity">
                                     <div class="input-group-prepend">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <!--                            <a href="checkout.html" class="submit">ADD TO CART</a>-->
-                                <button type="submit" class="submit">ADD TO CART</button>
+                                <a href="{{ route('checkout.edit', $product->id) }}" class="btn submit">ADD TO CART</a>
                             </form>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="carousel-inner related-items">
                         <article class="carousel-item active item">
                             <header class="item-header">
-                                <img class="item-header-img" src="img/drum.jpg" alt="drum">
+                                <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
                             </header>
                             <div class="item-content">
                                 <p class="item-content-category">Bestselling, Drums</p>
@@ -84,41 +84,20 @@
                                 <p class="item-content-price">€879,95</p>
                             </div>
                         </article>
-                        <article class="carousel-item item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/guitar.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Guitar</p>
-                                <h3 class="item-content-title">Guitar - Plastic</h3>
-                                <!--                                    <p class="item-content-description">Gitaar van hoge kwaliteit en veel kabaal. </p>-->
-                                <p class="item-content-price">€1879,95</p>
-                            </div>
-                        </article>
-                        <article class="carousel-item item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/piano.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Piano</p>
-                                <h3 class="item-content-title">Piano - Wood</h3>
-                                <!--                                    <p class="item-content-description">Piano van hoge kwaliteit en veel kabaal. Lorem ipsum dolor sit amet, consectetur-->
-                                <!--                                        adipisicing elit. Me nog veel meer tekst om te testen.</p>-->
-                                <p class="item-content-price">€10879,95</p>
-                            </div>
-                        </article>
-                        <article class="carousel-item item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/violin.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Violin</p>
-                                <h3 class="item-content-title">Violin - Wood</h3>
-                                <!--                                    <p class="item-content-description">Lorem ipsum dolor sit amet, consectetur-->
-                                <!--                                        adipisicing elit. Violin van hoge kwaliteit en veel kabaal.</p>-->
-                                <p class="item-content-price">€79,95</p>
-                            </div>
-                        </article>
+                        @foreach($related_products as $product)
+                            <article class="carousel-item item">
+                                <header class="item-header">
+                                    <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
+                                </header>
+                                <div class="item-content">
+                                    <p class="item-content-category">Bestselling, Drums</p>
+                                    <h3 class="item-content-title">{{ $product->name }}</h3>
+                                    <p class="item-content-description">{{ $product->short_description }}</p>
+                                    <p class="item-content-price">€{{ $product->price }}</p>
+                                </div>
+                            </article>
+                        @endforeach
+
                     </div>
                     <a class="carousel-control-prev" href="#carousel-1" role="button" data-slide="prev">
                         <i class="fas fa-arrow-alt-circle-left" aria-hidden="true"></i>
@@ -131,110 +110,33 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <div class="related-items d-flex flex-lg-wrap justify-content-lg-between">
-                        <article class="item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/drum.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Drums</p>
-                                <h3 class="item-content-title">Drumstel - Wood</h3>
-                                <p class="item-content-price">€879,95</p>
-                                <div class="item-hover">
-                                    <div class="item-hover-rating d-flex justify-content-center">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p class="item-hover-description">Drum van hoge kwaliteit en veel kabaal. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                    <div class="item-hover-btns d-flex justify-content-between">
-                                        <a href="#"
-                                           class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                        <a href="#" class="item-hover-buy">BUY NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/guitar.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Guitar</p>
-                                <h3 class="item-content-title">Guitar - Plastic</h3>
-                                <p class="item-content-price">€1879,95</p>
-                                <div class="item-hover">
-                                    <div class="item-hover-rating d-flex justify-content-center">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p class="item-hover-description">Drum van hoge kwaliteit en veel kabaal. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                    <div class="item-hover-btns d-flex justify-content-between">
-                                        <a href="#"
-                                           class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                        <a href="#" class="item-hover-buy">BUY NOW</a>
+                        @foreach($related_products as $product)
+                            <article class="item">
+                                <header class="item-header">
+                                    <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
+                                </header>
+                                <div class="item-content">
+                                    <p class="item-content-category">Bestselling, Drums</p>
+                                    <h3 class="item-content-title">{{ $product->name }}</h3>
+                                    <p class="item-content-price">€{{ $product->price }}</p>
+                                    <div class="item-hover">
+                                        <div class="item-hover-rating d-flex justify-content-center">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <p class="item-hover-description">{{ $product->short_description }}</p>
+                                        <div class="item-hover-btns d-flex justify-content-between">
+                                            <a href="#"
+                                               class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
+                                            <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">View Product</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/piano.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Piano</p>
-                                <h3 class="item-content-title">Piano - Wood</h3>
-                                <p class="item-content-price">€10879,95</p>
-                                <div class="item-hover">
-                                    <div class="item-hover-rating d-flex justify-content-center">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p class="item-hover-description">Drum van hoge kwaliteit en veel kabaal. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                    <div class="item-hover-btns d-flex justify-content-between">
-                                        <a href="#"
-                                           class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                        <a href="#" class="item-hover-buy">BUY NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="item">
-                            <header class="item-header">
-                                <img class="item-header-img" src="img/violin.jpg" alt="drum">
-                            </header>
-                            <div class="item-content">
-                                <p class="item-content-category">Bestselling, Violin</p>
-                                <h3 class="item-content-title">Violin - Wood</h3>
-                                <p class="item-content-price">€79,95</p>
-                                <div class="item-hover">
-                                    <div class="item-hover-rating d-flex justify-content-center">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </div>
-                                    <p class="item-hover-description">Drum van hoge kwaliteit en veel kabaal. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.</p>
-                                    <div class="item-hover-btns d-flex justify-content-between">
-                                        <a href="#"
-                                           class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                        <a href="#" class="item-hover-buy">BUY NOW</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
+                        @endforeach
                     </div>
                 </div>
             </section>

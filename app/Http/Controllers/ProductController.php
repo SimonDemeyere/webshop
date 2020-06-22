@@ -90,9 +90,10 @@ class ProductController extends Controller
     public function show(Product $product, $id)
     {
         $product = Product::findOrFail($id);
+        $related_products = Product::where('category_id', '=', $product->category_id)->inRandomOrder()->limit(4)->get();
         $comments = Comment::where('product_id', '=', $id)->orderBy('created_at', 'desc')->get();
 
-        return view('detail', compact('product', 'comments'));
+        return view('detail', compact('product', 'comments', 'related_products'));
     }
 
     /**

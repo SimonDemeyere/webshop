@@ -1649,7 +1649,7 @@ table tfoot tr #table-price {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-height: 39vw;
+    max-height: 35vw;
     width: 100%;
   }
   #block-detail > div #detail-helper #detail-content {
@@ -1695,6 +1695,10 @@ table tfoot tr #table-price {
     transform: none;
     left: auto;
     margin-bottom: 25px;
+  }
+
+  #block-reviews #reviews-container #nav-tabContent #nav-write form button {
+    width: 250px;
   }
 
   #block-checkout #checkout-nav {

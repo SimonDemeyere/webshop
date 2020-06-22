@@ -54,7 +54,7 @@
                                         <div class="item-hover-btns d-flex justify-content-between">
                                             <a href="#"
                                                class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                            <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">BUY NOW</a>
+                                            <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">View Product</a>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                     <p class="item-hover-description">{{ $product->short_description }}</p>
                                     <div class="item-hover-btns d-flex justify-content-between">
                                         <a href="#" class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                        <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">BUY NOW</a>
+                                        <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">View Product</a>
                                     </div>
                                 </div>
                             </div>

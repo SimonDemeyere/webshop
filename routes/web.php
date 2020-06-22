@@ -14,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/shop/product/{id}', 'ProductController@show')->name('shop.product');
 Route::post('/comment', 'commentController@store')->name('comment');
+Route::resource('/checkout', 'CartController');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    });
+    Route::get('/admin', 'DashboardController@index');
 
     Route::resource('/admin/users', 'UserController');
     Route::get('/admin/users/restore/{id}', 'UserController@restore')->name('users.restore');
