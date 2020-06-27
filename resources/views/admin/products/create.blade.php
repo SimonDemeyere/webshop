@@ -27,7 +27,7 @@
                     <h4 class="header-title">Create Product</h4>
                     <p class="sub-header">Create <b><code>product</code></b> records.</p>
 
-                    <form action="{{ route('products.store') }}" method="POST" class="needs-validation">
+                    <form action="{{ route('products.store') }}" method="POST" class="needs-validation" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
                             <label for="name">Name</label>
@@ -56,7 +56,7 @@
                         <div id="subCategories" class="d-none"></div>
                         <div class="form-group mb-3">
                             <label for="file">Product Image</label>
-                            <input name="file[]" type="file" id="file" class="form-control-file">
+                            <input name="file[]" type="file" id="file" class="form-control-file" multiple>
                         </div>
                        {{-- <div class="form-group mb-3">
                             <label for="child_category">Select subcategory</label>

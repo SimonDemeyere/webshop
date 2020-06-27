@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <!--                            <a href="checkout.html" class="submit">ADD TO CART</a>-->
-                                <a href="{{ route('checkout.edit', $product->id) }}" class="btn submit">ADD TO CART</a>
+                                <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn submit">ADD TO CART</a>
                             </form>
                         </div>
                     </div>
@@ -84,18 +84,21 @@
                                 <p class="item-content-price">€879,95</p>
                             </div>
                         </article>
-                        @foreach($related_products as $product)
-                            <article class="carousel-item item">
-                                <header class="item-header">
-                                    <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
-                                </header>
-                                <div class="item-content">
-                                    <p class="item-content-category">Bestselling, Drums</p>
-                                    <h3 class="item-content-title">{{ $product->name }}</h3>
-                                    <p class="item-content-description">{{ $product->short_description }}</p>
-                                    <p class="item-content-price">€{{ $product->price }}</p>
-                                </div>
-                            </article>
+                        @foreach($related_products as $relatedProduct)
+                            <a href="{{ route('shop.product', $relatedProduct->id) }}">
+                                <article class="carousel-item item">
+                                    <header class="item-header">
+                                        <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
+                                    </header>
+                                    <div class="item-content">
+                                        <p class="item-content-category">Bestselling, Drums</p>
+                                        <h3 class="item-content-title">{{ $relatedProduct->name }}</h3>
+                                        <p class="item-content-description">{{ $relatedProduct->short_description }}</p>
+                                        <p class="item-content-price">€{{ $relatedProduct->price }}</p>
+                                    </div>
+                                </article>
+                            </a>
+
                         @endforeach
 
                     </div>
@@ -110,15 +113,15 @@
                 </div>
                 <div class="d-none d-lg-block">
                     <div class="related-items d-flex flex-lg-wrap justify-content-lg-between">
-                        @foreach($related_products as $product)
+                        @foreach($related_products as $relatedProduct)
                             <article class="item">
                                 <header class="item-header">
                                     <img class="item-header-img" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
                                 </header>
                                 <div class="item-content">
                                     <p class="item-content-category">Bestselling, Drums</p>
-                                    <h3 class="item-content-title">{{ $product->name }}</h3>
-                                    <p class="item-content-price">€{{ $product->price }}</p>
+                                    <h3 class="item-content-title">{{ $relatedProduct->name }}</h3>
+                                    <p class="item-content-price">€{{ $relatedProduct->price }}</p>
                                     <div class="item-hover">
                                         <div class="item-hover-rating d-flex justify-content-center">
                                             <i class="fas fa-star"></i>
@@ -127,11 +130,11 @@
                                             <i class="far fa-star"></i>
                                             <i class="far fa-star"></i>
                                         </div>
-                                        <p class="item-hover-description">{{ $product->short_description }}</p>
+                                        <p class="item-hover-description">{{ $relatedProduct->short_description }}</p>
                                         <div class="item-hover-btns d-flex justify-content-between">
                                             <a href="#"
                                                class="item-hover-favorite d-flex align-items-center justify-content-center"><i class="fas fa-heart"></i></a>
-                                            <a href="{{ route('shop.product', $product->id) }}" class="item-hover-buy">View Product</a>
+                                            <a href="{{ route('shop.product', $relatedProduct->id) }}" class="item-hover-buy">View Product</a>
                                         </div>
                                     </div>
                                 </div>

@@ -24,22 +24,32 @@
                 <a class="nav-link" href="{{ route('register') }}">Register</a>
             </li>
             @endguest
-            <li class="nav-item">
-                <a class="nav-link d-lg-none" href="{{ route('checkout.index') }}">Shop Cart</a>
+            <li class="nav-item cart">
+                <a class="nav-link d-lg-none" href="{{ route('product.checkout') }}">Shop Cart</a>
                 <ul class="nav navbar-nav navbar-right d-none d-lg-block">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span
-                                class="glyphicon glyphicon-shopping-cart"></span><i class="fas fa-shopping-cart"></i></a>
+                    <li class="position-relative dropdown">
+                        @if(Session::has('cart'))
+                            <div class="position-absolute cartCount">
+                                <span class="text-white badge">{{ Session::get('cart')->totalQty }}</span>
+                            </div>
+                        @endif
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                         <ul class="dropdown-menu dropdown-cart" role="menu">
-                            @if(isset($cartItems))
-                                @foreach($cartItems as $cartItem)
+                            @if(Session::has('cart'))
+                                @foreach(Session::get('cart')->items as $product)
                                     <li>
                                         <div class="cart-img">
                                             <img src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
                                         </div>
+                                        <div class="cart-qty d-flex align-items-center">
+                                            <p>{{ $product['qty'] > 1 ? $product['qty'] . 'x' : '' }}</p>
+                                        </div>
                                         <div class="cart-title">
-                                            <p>{{ $cartItem->name }}</p>
-                                            <p>€{{ $cartItem->price }}</p>
+                                            <p>{{ $product['item']['name'] }}</p>
+                                            <p>€{{ $product['price'] }}</p>
                                         </div>
                                         <div class="cart-remove">
                                             <i class="fas fa-trash-alt red"></i>
@@ -47,7 +57,7 @@
                                     </li>
                                 @endforeach
                                 <li class="divider"></li>
-                                <li><a id="cart-link" class="text-center" href="{{ route('checkout.index') }}">View Cart</a></li>
+                                <li><a id="cart-link" class="text-center" href="{{ route('product.checkout') }}">View Cart</a></li>
                             @else
                                 <li>No items in cart.</li>
                             @endif

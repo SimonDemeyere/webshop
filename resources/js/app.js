@@ -32,6 +32,8 @@ require('jquery-slimscroll');
 require('jquery.counterup');
 // require('jquery-waypoints/waypoints.min');
 
+require('axios');
+
 // Custom JS
 require('./custom_front');
 require('./custom');

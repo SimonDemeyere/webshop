@@ -2,6 +2,7 @@
 @section("content")
     <div class="row">
         <div class="col-12 col-md-10 col-xl-8 offset-md-1 offset-xl-2">
+            @if(Session::has('cart'))
             <section id="block-checkout">
                 <div class="panel-group" id="accordion">
                     <div class="panel panel-default">
@@ -64,40 +65,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($cartItems as $cartItem)
-                                            <tr>
-                                                <td><img class="d-none d-lg-block" src="{{ asset('assets/images/drum.jpg') }}" alt="drum">{{ $cartItem->name }}</td>
-                                                <td>€{{ $cartItem->price }}</td>
-                                                <td>
-                                                    <form class="d-flex flex-column" method="post" action="{{ route('checkout.update', $cartItem->rowId) }}">
-                                                        @csrf
-                                                        {{ method_field('PUT') }}
-                                                        <input name="qty" type="text" value="{{ $cartItem->qty }}">
-                                                        <input type="submit" class="button" value="Change Quantity">
-                                                    </form>
+                                    @foreach($products as $product)
+                                        <tr>
+                                            <td><img class="d-none d-lg-block" src="{{ asset('assets/images/drum.jpg') }}" alt="drum"><span class="font-weight-bold">{{ $product['item']['name'] }}</span></td>
+                                            <td>€{{ $product['price'] }}</td>
+                                            <td>
+                                                <form class="d-flex flex-column" method="post" action="">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                    <input name="qty" type="text" value="{{ $product['qty'] }}">
+                                                </form>
 
-                                                </td>
-                                                <td>Remove</td>
-                                            </tr>
-                                        @endforeach
+                                            </td>
+                                            <td><a href="{{ route('product.removeFromCart', $product['item']['id']) }}">Remove</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td colspan="4" id="table-total">Total:</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" id="table-total" class="font-weight-bold">€{{ Cart::subtotal() }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" id="table-total">+ €{{ Cart::tax() }} BTW</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" id="table-price" class="font-weight-bold">€{{ Cart::total() }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="4" id="table-total">Total:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" id="table-price" class="font-weight-bold">€{{ $totalPrice }}</td>
+                                    </tr>
 
                                     </tfoot>
                                 </table>
-                                <button class="submit">Next</button>
+                                <button class="submit"><span id="pay-with-paypal"></span>Next</button>
                             </div>
                         </section>
                     </div>
@@ -181,6 +175,16 @@
                     </div>
                 </div>
             </section>
+            @else
+                <div>
+                    <p>Winkelmantje is leeg.</p>
+                </div>
+            @endif
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://www.paypal.com/sdk/js?client-id=Afve9--FcNg3Xzft2izGvCQckL_nLZCJRlTG6Nr1Bl1eqP1wZmaMQ7328nHMQo7MH8aAWMaBNpz6pKf4"></script>
+    <script>paypal.Buttons().render('#pay-with-paypal');</script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Category;
 use App\Comment;
 use App\Http\Requests\ProductRequest;
@@ -10,6 +11,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -24,7 +26,47 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
+
         return view('admin.products.index', compact('products'));
+    }
+
+
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function removeFromCart(Request $request, $id)
+    {
+        $cart = Session::get('cart');
+
+        $cart->totalPrice = $cart->totalPrice - $cart->items[$id]['price'];
+
+        if(count($cart->items) == 1) {
+            Session::forget('cart');
+        } else {
+            unset($cart->items[$id]);
+            $cart->totalQty--;
+        }
+
+        return redirect()->back();
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')) {
+            return view('checkout', ['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return view('checkout', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**
@@ -50,6 +92,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
+        $photos = array();
+
         $product->name = trim($request->name);
         $product->description = trim($request->description);
         if($request->short_description) {
@@ -59,24 +103,28 @@ class ProductController extends Controller
         $product->category_id = trim($request->category);
 
         if($request->has('file')) {
-            dd($request->file('file'));
-            foreach($request->file('file') as $file) {
-                $file_name = Str::slug($file->getClientOriginalName() . '_' . time());
-                $folder = 'images/products';
-                $tmp_path = $folder . $file_name . '.' . $file->getClientOriginalExtension();
+            foreach($request->file as $file) {
+                $photo = new Photo();
 
-                $this->uploadOne($file, $folder, 'public', $file_name);
+                $image_name = Str::slug($file->getClientOriginalName() . '_' . time());
+                $folder = 'images/products/';
+                $tmp_path = $folder . $image_name . '.' . $file->getClientOriginalExtension();
 
-                $files[] = $tmp_path;
-            };
-            $photo = new Photo();
-            $photo->src = json_encode($files);
+                $this->uploadOne($file, $folder, 'public', $image_name);
+
+                $photo->src = $tmp_path;
+
+                $photos[] = $photo;
+            }
         }
 
         $product->save();
         $product = Product::latest('created_at')->first();
-        $photo->product_id = $product->id;
-        $photo->save();
+
+        foreach($photos as $photo) {
+            $photo->product_id = $product->id;
+            $photo->save();
+        }
 
         return redirect('/admin/products');
     }

@@ -12,9 +12,6 @@ class Photo extends Model
         'src', 'product_id'
     ];
 
-    public function getFileAttribute($photo) {
-        return $this->uploads . $photo;
-    }
     public function product() {
         return $this->belongsTo('App\Product');
     }

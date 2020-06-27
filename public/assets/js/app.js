@@ -33129,7 +33129,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.5.0
+ * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -33139,7 +33139,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-04-10T15:07Z
+ * Date: 2020-05-04T22:49Z
  */
 ( function( global, factory ) {
 
@@ -33277,7 +33277,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.0",
+	version = "3.5.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -37374,7 +37374,7 @@ Data.prototype = {
 
 		// If not, create one
 		if ( !value ) {
-			value = Object.create( null );
+			value = {};
 
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
@@ -76842,7 +76842,9 @@ __webpack_require__(/*! metismenu */ "./node_modules/metismenu/dist/metisMenu.js
 __webpack_require__(/*! jquery-slimscroll */ "./node_modules/jquery-slimscroll/jquery.slimscroll.js");
 
 __webpack_require__(/*! jquery.counterup */ "./node_modules/jquery.counterup/jquery.counterup.js"); // require('jquery-waypoints/waypoints.min');
-// Custom JS
+
+
+__webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // Custom JS
 
 
 __webpack_require__(/*! ./custom_front */ "./resources/js/custom_front.js");
@@ -77288,6 +77290,7 @@ function createProductDropDown(subCategories) {
   subCategoriesDiv.classList.remove('d-none');
   var dropdown = document.createElement('select');
   dropdown.classList.add('form-control');
+  console.log('products');
 
   for (var i = 0; i < subCategories.length; i++) {
     var subCategory = subCategories[i];
@@ -77297,6 +77300,7 @@ function createProductDropDown(subCategories) {
     dropdown.appendChild(option);
   }
 
+  dropdown.name = 'category';
   subCategoriesDiv.appendChild(dropdown);
 } // Activating DataTable
 
@@ -77352,6 +77356,86 @@ if (icon) {
     $(window).scroll(function () {
       $('nav').toggleClass('scrolled', $(this).scrollTop() > $(window).height() - 70);
     });
+  }
+
+  var filterBtnDOMALL = document.getElementsByClassName('filter-btn');
+  var blockShop = document.getElementById('block-shop-items');
+
+  if (filterBtnDOMALL) {
+    (function () {
+      var fetchProducts = function fetchProducts(categoryId) {
+        blockShop.innerHTML = '';
+        axios.get('/fetch-products/' + categoryId).then(function (response) {
+          // handle success
+          console.log('response:');
+          console.log(response.data.data);
+          shopCards(response.data.data);
+        })["catch"](function (error) {
+          // handle error
+          console.log(error);
+        }).then(function () {// always executed
+        });
+        var searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('change', function (e) {
+          var keyword = searchInput.value;
+          axios.get('/search/' + keyword).then(function (response) {
+            // handle success
+            console.log('response:');
+            console.log(response.data);
+            shopCards(response.data);
+          });
+        });
+      };
+
+      var shopCards = function shopCards(products) {
+        var url = location.host + '/assets/';
+        console.log(url);
+
+        for (var _i = 0; products.length > _i; _i++) {
+          var product = products[_i];
+          var card = "<a href=\"/shop/product/".concat(product.id, "\" class=\"mobile-only\">\n                    <article class=\"item mobile-only\">\n                        <header class=\"item-header\">\n                            <img class=\"item-header-img\" src=\"/assets/").concat(product.photos.length >= 1 ? product.photos[0].src : 'images/drum.jpg', "\" alt=\"drum\">\n                        </header>\n                        <div class=\"item-content\">\n                            <p class=\"item-content-category\">Bestselling,\n                                ").concat(product.category.category, "\n                            </p>\n                            <h3 class=\"item-content-title\">").concat(product.name, "</h3>\n                            <p class=\"item-content-price\">\u20AC").concat(product.price, "</p>\n                            <div class=\"item-hover\">\n                                <div class=\"item-hover-rating d-flex justify-content-center\">\n                                    <i class=\"fas fa-star\"></i>\n                                    <i class=\"fas fa-star\"></i>\n                                    <i class=\"fas fa-star\"></i>\n                                    <i class=\"far fa-star\"></i>\n                                    <i class=\"far fa-star\"></i>\n                                </div>\n                                <p class=\"item-hover-description\">").concat(product.short_description, "</p>\n                                <div class=\"item-hover-btns d-flex justify-content-between\">\n                                    <a href=\"#\"\n                                       class=\"item-hover-favorite d-flex align-items-center justify-content-center\"><i class=\"fas fa-heart\"></i></a>\n                                    <a href=\"/product/").concat(product.id, "\" class=\"item-hover-buy\">View Product</a>\n                                </div>\n                            </div>\n                        </div>\n                    </article>\n                </a>\n                <article class=\"item desktop\">\n                    <header class=\"item-header\">\n                        <img class=\"item-header-img\" src=\"/assets/").concat(product.photos.length >= 1 ? product.photos[0].src : 'images/drum.jpg', "\" alt=\"drum\">\n                    </header>\n                    <div class=\"item-content\">\n                        <p class=\"item-content-category\">Bestselling, \n                            ").concat(product.category.category, "\n                        </p>\n                        <h3 class=\"item-content-title\">").concat(product.name, "</h3>\n                        <p class=\"item-content-price\">\u20AC").concat(product.price, "</p>\n                        <div class=\"item-hover\">\n                            <div class=\"item-hover-rating d-flex justify-content-center\">\n                                <i class=\"fas fa-star\"></i>\n                                <i class=\"fas fa-star\"></i>\n                                <i class=\"fas fa-star\"></i>\n                                <i class=\"far fa-star\"></i>\n                                <i class=\"far fa-star\"></i>\n                            </div>\n                            <p class=\"item-hover-description\">").concat(product.short_description, "</p>\n                            <div class=\"item-hover-btns d-flex justify-content-between\">\n                                <a href=\"#\" class=\"item-hover-favorite d-flex align-items-center justify-content-center\"><i class=\"fas fa-heart\"></i></a>\n                                <a href=\"/product/").concat(product.id, "\" class=\"item-hover-buy\">View Product</a>\n                            </div>\n                        </div>\n                    </div>\n                </article>\n                ");
+          blockShop.insertAdjacentHTML('beforeend', card);
+        }
+      };
+
+      var _loop = function _loop(i) {
+        var filterBtn = filterBtnDOMALL[i];
+        filterBtn.addEventListener('click', function (e) {
+          var activeFiltersALL = document.querySelectorAll('.filter-btn.active');
+          var filter = -1;
+          console.log(filterBtn.classList.contains('active'));
+
+          if (filterBtn.classList.contains('active')) {
+            filterBtn.classList.remove('active');
+          } else {
+            for (var x = 0; x < activeFiltersALL.length; x++) {
+              var activeFilterBtn = activeFiltersALL[x];
+              activeFilterBtn.classList.remove('active');
+            }
+
+            filterBtn.classList.add('active');
+            filter = filterBtn.dataset.filter;
+          } // const filters = [];
+
+          /*for (let x = 0; x < activeFiltersALL.length; x++) {
+              const filterBtn = activeFiltersALL[x];
+              filters.push(filterBtn.dataset.filter);
+          }*/
+          // XHR SQL request
+
+
+          console.log(filterBtn.dataset.filter);
+          fetchProducts(filter);
+        });
+      };
+
+      for (var i = 0; i < filterBtnDOMALL.length; i++) {
+        _loop(i);
+      }
+
+      var categoryId = -1;
+      fetchProducts(categoryId);
+    })();
   } // window.onscroll = function() {scrollFunction()};
 
   /*function scrollFunction() {
@@ -77361,7 +77445,7 @@ if (icon) {
           topBtn.style.display = "none";
       }
   }
-    topBtn.onclick = function () {
+   topBtn.onclick = function () {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   };*/

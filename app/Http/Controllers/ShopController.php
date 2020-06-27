@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Comment;
 use App\Product;
 use Illuminate\Http\Request;
@@ -15,9 +16,21 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(20);
+        $products = Product::orderBy('updated_at', 'desc')->with('photos')->with('category')->paginate(20);
+        $categories = Category::orderBy('category')->get();
 
-        return view('store', compact('products'));
+        return view('store', compact('products', 'categories'));
+    }
+
+    public function fetchProducts($id)
+    {
+        if ($id >= 0) {
+            $products = Product::orderBy('updated_at', 'desc')->with('photos')->with('category')->where('category_id', '=', $id)->paginate(20);
+        } else {
+            $products = Product::orderBy('updated_at', 'desc')->with('photos')->with('category')->paginate(20);
+        }
+
+        return $products;
     }
 
     /**

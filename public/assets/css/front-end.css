@@ -164,15 +164,20 @@ body {
 #block-sold > div .sold-items .item .item-header {
   max-height: 233px;
   overflow: hidden;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 300px;
 }
 #block-sold > div .sold-items .item .item-header .item-header-img {
   width: 100%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #block-sold > div .sold-items .item .item-content {
   display: flex;
@@ -333,15 +338,20 @@ body {
 #block-newest > div .newest-items .item .item-header {
   max-height: 233px;
   overflow: hidden;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 300px;
 }
 #block-newest > div .newest-items .item .item-header .item-header-img {
   width: 100%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #block-newest > div .newest-items .item .item-content {
   display: flex;
@@ -562,6 +572,10 @@ body {
   right: 50%;
   transform: translate(200px, 0);
 }
+#block-shop > p button {
+  color: #B102F2;
+  font-size: 1.6rem;
+}
 #block-shop #block-filter #filter-list {
   display: flex;
   justify-content: center;
@@ -649,15 +663,20 @@ body {
 #block-shop #block-shop-items .item .item-header {
   max-height: 233px;
   overflow: hidden;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 300px;
 }
 #block-shop #block-shop-items .item .item-header .item-header-img {
   width: 100%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #block-shop #block-shop-items .item .item-content {
   display: flex;
@@ -953,15 +972,20 @@ body {
 #block-related-products > div .related-items .item .item-header {
   max-height: 233px;
   overflow: hidden;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  height: 300px;
 }
 #block-related-products > div .related-items .item .item-header .item-header-img {
   width: 100%;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #block-related-products > div .related-items .item .item-content {
   display: flex;
@@ -1388,6 +1412,21 @@ table tfoot tr #table-price {
 }
 
 @media (min-width: 576px) {
+  #header nav div .cart ul .dropdown .cartCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #ff3854;
+    border-radius: 50%;
+    padding: 3px;
+  }
+  #header nav div .cart ul .dropdown .cartCount span {
+    font-size: 9pt;
+  }
+
   #block-shop #block-filter #filter-list .category-desktop {
     display: block;
   }
@@ -1637,6 +1676,9 @@ table tfoot tr #table-price {
   #block-shop #block-shop-items .mobile-only {
     display: none;
   }
+  #block-shop #block-shop-items #collapseFilters #block-filter #collapseCategory > div .categories .filter-btn.active {
+    border: 1px solid red;
+  }
 
   #block-detail > div {
     display: flex;
@@ -1743,7 +1785,7 @@ table tfoot tr #table-price {
     align-items: center;
   }
   #block-checkout #myTabContent #home #overview-products #buy-table tbody tr td img {
-    width: 200px;
+    width: 150px;
     margin-right: 25px;
   }
   #block-checkout #myTabContent #profile #block-address > form {

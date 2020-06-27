@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', e => {
                             createProductDropDown(data);
                         }
                     }
-                }
+                };
                 xhr.send();
             }
         });
@@ -298,6 +298,7 @@ function createProductDropDown(subCategories) {
     subCategoriesDiv.classList.remove('d-none');
     const dropdown = document.createElement('select');
     dropdown.classList.add('form-control');
+    console.log('products');
 
     for(let i = 0; i < subCategories.length; i++) {
         const subCategory = subCategories[i];
@@ -305,8 +306,10 @@ function createProductDropDown(subCategories) {
         option.value = subCategory.id;
         option.text  = subCategory.category;
 
+
         dropdown.appendChild(option);
     }
+    dropdown.name  = 'category';
 
     subCategoriesDiv.appendChild(dropdown);
 }

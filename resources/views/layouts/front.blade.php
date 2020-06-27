@@ -19,5 +19,9 @@
     @yield("content")
 </div>
 @include("layouts.partials_front.footer")
-<script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script></body>
+<script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+
+@yield('scripts')
+
+</body>
 </html>
