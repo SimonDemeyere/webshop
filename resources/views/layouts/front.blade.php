@@ -8,6 +8,9 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/front-end.css') }}" rel="stylesheet">
+
+    @yield('extra-css')
+
 </head>
 <body>
 <div id='app'></div>

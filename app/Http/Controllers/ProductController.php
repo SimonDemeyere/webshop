@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Stripe;
+use Session;
 use App\Cart;
 use App\Category;
 use App\Comment;
@@ -10,8 +12,9 @@ use App\Photo;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -25,7 +28,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::with('photos')->paginate(10);
 
         return view('admin.products.index', compact('products'));
     }
@@ -81,6 +84,21 @@ class ProductController extends Controller
             ->with('childrenCategories')
             ->get();
         return view('admin.products.create', compact('categories'));
+    }
+
+    public function checkout(Request $request)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+            "amount" => Session::get('cart')->totalPrice,
+            "currency" => "eur",
+            "source" => $request->stripeToken,
+            "description" => "Order"
+        ]);
+
+        Session::forget('cart');
+
+        return back();
     }
 
     /**
@@ -152,7 +170,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::orderBy('category')->get();
+
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -175,6 +195,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if($product->photos && File::exists('assets/' . $product->photos->src)) {
+            $image = public_path( 'assets/' . $product->photos->src );
+            if(File::exists($image)) {
+                unlink($image);
+            }
+            $product->photos->delete();
+        }
+        $product->delete();
+        return redirect('/admin/products');
     }
 }

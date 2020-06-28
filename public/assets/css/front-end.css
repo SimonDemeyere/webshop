@@ -1213,39 +1213,39 @@ body {
   margin-bottom: 25px;
 }
 
-#block-address > form {
+#block-address > div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#block-address > form .address-header h2 {
+#block-address > div .address-header h2 {
   margin-bottom: 25px;
 }
-#block-address > form .input-main {
+#block-address > div .input-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 80%;
 }
-#block-address > form .input-main .input-field {
+#block-address > div .input-main .input-field {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin-bottom: 25px;
 }
-#block-address > form .input-main .input-field label {
+#block-address > div .input-main .input-field label {
   margin-bottom: 10px;
   font-size: 16px;
 }
-#block-address > form .input-main .input-field label i {
+#block-address > div .input-main .input-field label i {
   margin-right: 15px;
 }
-#block-address > form .input-main .input-field input {
+#block-address > div .input-main .input-field input {
   border-style: none;
   padding: 10px 25px;
   border-radius: 10px;
 }
-#block-address > form .input-main .submit {
+#block-address > div .input-main .submit {
   margin-bottom: 25px;
 }
 
@@ -1409,6 +1409,37 @@ table tfoot tr #table-price {
 }
 .submit:hover {
   background-color: #B102F2;
+}
+
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.payment-group {
+  width: 350px;
+}
+
+.fade:not(.show) {
+  display: none;
 }
 
 @media (min-width: 576px) {
@@ -1788,25 +1819,25 @@ table tfoot tr #table-price {
     width: 150px;
     margin-right: 25px;
   }
-  #block-checkout #myTabContent #profile #block-address > form {
+  #block-checkout #myTabContent #profile #block-address > div {
     display: flex;
     flex-direction: column;
   }
-  #block-checkout #myTabContent #profile #block-address > form .address-header h2 {
+  #block-checkout #myTabContent #profile #block-address > div .address-header h2 {
     margin: 50px 0;
   }
-  #block-checkout #myTabContent #profile #block-address > form .input-main {
+  #block-checkout #myTabContent #profile #block-address > div .input-main {
     flex-direction: row;
     justify-content: space-between;
   }
-  #block-checkout #myTabContent #profile #block-address > form .input-main .input-field {
+  #block-checkout #myTabContent #profile #block-address > div .input-main .input-field {
     width: 45%;
   }
-  #block-checkout #myTabContent #profile #block-address > form .submit {
+  #block-checkout #myTabContent #profile #block-address > div .submit {
     width: 45%;
     margin: 50px 0;
   }
-  #block-checkout #myTabContent #profile #block-address > form .submit-field {
+  #block-checkout #myTabContent #profile #block-address > div .submit-field {
     justify-content: flex-end;
   }
   #block-checkout #myTabContent #contact #block-billing .submit {

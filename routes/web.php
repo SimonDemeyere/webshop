@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('product.addToCart');
     Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('product.removeFromCart');
     Route::get('/checkout', 'ProductController@getCart')->name('product.checkout');
+    Route::post('/checkout', 'ProductController@checkout')->name('checkout');
     //Add comment to product
     Route::post('/comment', 'commentController@store')->name('comment');
 

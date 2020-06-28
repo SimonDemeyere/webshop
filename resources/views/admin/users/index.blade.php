@@ -72,7 +72,6 @@
                                     @else
                                         <a class="btn btn-outline-warning rounded-pill w-50 mb-1" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i></a>
                                     @endif
-
                                 </td>
                             </tr>
                             @endforeach

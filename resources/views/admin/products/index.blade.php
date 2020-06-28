@@ -40,8 +40,6 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
-
-
                         <tbody>
                         @if($products)
                             @foreach ($products as $product)

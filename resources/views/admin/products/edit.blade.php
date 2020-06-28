@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("title")
-    Edit Role
+    Edit Product
 @endsection
 @section("content")
     <!-- start page title -->
@@ -24,34 +24,60 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Edit Role</h4>
-                    <p class="sub-header">Change <b><code>role</code></b> records.</p>
-
-                    <Form id="saveRow" action="{{ route('roles.update', $role) }}" method="post" class="needs-validation">
+                    <h4 class="header-title">Edit Product</h4>
+                    <p class="sub-header">Change <b><code>Product</code></b> records.</p>
+                    <Form id="saveRow" action="{{ route('products.update', $product) }}" method="post" class="needs-validation">
                         {{ method_field('PATCH') }}
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="role">Role</label>
-                            <input id="role" name="role" type="text" value="{{ $role->name }}" class="form-control">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" value="{{ $product->name }}" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="short_description">Short Description</label>
+                            <input id="short_description" name="short_description" type="text" value="{{ $product->short_description }}" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="product">Description</label>
+                            <textarea id="product" name="product" type="textarea" class="form-control">{{ $product->description }}</textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="price">Price</label>
+                            <input id="price" name="price" type="number" value="{{ $product->price }}" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="category">Select category</label>
+                            <select name="category" id="category" class="form-control">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </Form>
-                    <form id="deleteRow" action="{{ route('roles.destroy', $role) }}" method="post">
+                    <form id="deleteRow" action="{{ route('products.destroy', $product) }}" method="post">
                         {{ method_field('DELETE') }}
                         @csrf
                     </form>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-start">
                             <div class="form-group mr-3">
-                                <input form="saveRow" type="submit" value="Edit Role" class="btn btn-primary">
+                                <input form="saveRow" type="submit" value="Edit Product" class="btn btn-primary">
                             </div>
                             <div class="form-group">
-                                <input form="deleteRow" type="submit" value="Delete Role" class="btn btn-danger">
+                                <input form="deleteRow" type="submit" value="Delete Product" class="btn btn-danger">
                             </div>
                         </div>
                     </div>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
         </div> <!-- end col-->
+        <div class="col-lg-6 d- flex-wrap justify-content-between">
+            @if(count($product->photos) > 0)
+                @foreach($product->photos as $photo)
+                    <img width="150" height="150" src="{{ asset('assets/'.$photo->src) }}" alt="photo">
+                @endforeach
+            @endif
+        </div>
     </div>
     <!-- end row -->
 @endsection
