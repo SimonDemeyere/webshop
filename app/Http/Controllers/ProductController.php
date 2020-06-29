@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderDetail;
 use Stripe;
 use Session;
 use App\Cart;
@@ -95,6 +97,25 @@ class ProductController extends Controller
             "source" => $request->stripeToken,
             "description" => "Order"
         ]);
+
+        $order = new Order();
+        $order->user_id = Auth()->user()->id;
+        $order->payment_amount = Session::get('cart')->totalPrice;
+        $order->save();
+
+        $lastOrder = Order::latest()->first();
+
+        $products = Session::get('cart')->items;
+
+        foreach($products as $product) {
+            $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $lastOrder->id;
+            $orderDetail->product_id = $product['item']['id'];
+            $orderDetail->price = $product['item']['price'];
+            $orderDetail->qty = $product['qty'];
+
+            $orderDetail->save();
+        }
 
         Session::forget('cart');
 
