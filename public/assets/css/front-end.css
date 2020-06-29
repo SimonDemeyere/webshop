@@ -846,9 +846,15 @@ body {
 #block-detail #detail-helper #detail-image #image-main {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 #block-detail #detail-helper #detail-image #image-main > img {
-  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  max-width: 100%;
 }
 #block-detail #detail-helper #detail-image #image-diff {
   display: flex;

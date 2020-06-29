@@ -626,8 +626,12 @@ body {
             #image-main {
                 width: 100%;
                 overflow: hidden;
+                display: flex;
+                justify-content: center;
                 > img {
-                    width: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    max-width: 100%;
                 }
             }
             #image-diff {

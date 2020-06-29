@@ -90,7 +90,7 @@ class ProductController extends Controller
     {
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-            "amount" => Session::get('cart')->totalPrice,
+            "amount" => Session::get('cart')->totalPrice * 100,
             "currency" => "eur",
             "source" => $request->stripeToken,
             "description" => "Order"
@@ -156,7 +156,7 @@ class ProductController extends Controller
     public function show(Product $product, $id)
     {
         $product = Product::findOrFail($id);
-        $related_products = Product::where('category_id', '=', $product->category_id)->inRandomOrder()->limit(4)->get();
+        $related_products = Product::with('photos')->where('category_id', '=', $product->category_id)->inRandomOrder()->limit(4)->get();
         $comments = Comment::where('product_id', '=', $id)->orderBy('created_at', 'desc')->get();
 
         return view('detail', compact('product', 'comments', 'related_products'));

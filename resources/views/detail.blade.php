@@ -33,20 +33,35 @@
                             </div>
                         </div>
                         <div id="detail-image" class="">
-                            <div id="image-main">
-                                <img src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
-                            </div>
-                            <div id="image-diff">
-                                <div class="image-diff-box">
-                                    <img src="{{ asset('assets/images/piano.jpg') }}" alt="piano">
-                                </div>
-                                <div class="image-diff-box">
-                                    <img src="{{ asset('assets/images/violin.jpg') }}" alt="violin">
-                                </div>
-                                <div class="image-diff-box">
+                            @if(count($product->photos) > 1)
+
+                                    <div id="image-main">
+                                        <img src="{{ asset('assets/' .$product->photos[0]->src) }}" alt="drum">
+                                    </div>
+                                    <div id="image-diff">
+                                        @foreach($product->photos as $photo)
+                                            <div class="image-diff-box">
+                                                <img src="{{ asset('assets/' . $photo->src) }}" alt="piano">
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                            @else
+                                <div id="image-main">
                                     <img src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
                                 </div>
-                            </div>
+                                <div id="image-diff">
+                                    <div class="image-diff-box">
+                                        <img src="{{ asset('assets/images/piano.jpg') }}" alt="piano">
+                                    </div>
+                                    <div class="image-diff-box">
+                                        <img src="{{ asset('assets/images/violin.jpg') }}" alt="violin">
+                                    </div>
+                                    <div class="image-diff-box">
+                                        <img src="{{ asset('assets/images/drum.jpg') }}" alt="drum">
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div id="content-buy">
                             <form action="" method="POST">
